@@ -29,5 +29,17 @@
   { "topic": "countries", "kana": "かんこく", "romaji": "kankoku", "hebrew": "קוריאה", "hint": "'kan-koh-koo' — Korea" },
   { "topic": "countries", "kana": "いすらえる", "romaji": "isuraeru", "hebrew": "ישראל", "hint": "i-su-ra-e-ru" },
   { "topic": "countries", "kana": "ロシア", "romaji": "roshia", "hebrew": "רוסיה", "hint": "ro-shi-a" },
-  {"topic": "countries", "kana": "インド", "romaji": "indo", "hebrew": "הודו", "hint": "in-do" }
+  {"topic": "countries", "kana": "インド", "romaji": "indo", "hebrew": "הודו", "hint": "in-do" },
+
+  {"topic": "verbs", "kana": "いく", "romaji": "iku", "hebrew": "ללכת", "hint": "__"},
+  {"topic": "verbs", "kana": "きく", "romaji": "iku", "hebrew": "לשמוע", "hint": "__"},
+  {"topic": "verbs", "kana": "かえる", "romaji": "iku", "hebrew": "לחזור", "hint": "__"},
+  {"topic": "verbs", "kana": "のむ", "romaji": "iku", "hebrew": "לשתות", "hint": "__"},
+  {"topic": "verbs", "kana": "よむ", "romaji": "iku", "hebrew": "לקרוא", "hint": "__"},
+  {"topic": "verbs", "kana": "はなす", "romaji": "iku", "hebrew": "לדבר", "hint": "__"},
+  {"topic": "verbs", "kana": "たべる", "romaji": "iku", "hebrew": "לאכול", "hint": "__"},
+  {"topic": "verbs", "kana": "ねる", "romaji": "iku", "hebrew": "לישון", "hint": "__"},
+  {"topic": "verbs", "kana": "みる", "romaji": "iku", "hebrew": "לראות", "hint": "__"},
+  {"topic": "verbs", "kana": "する", "romaji": "iku", "hebrew": "לעשות", "hint": "__"},
+  {"topic": "verbs", "kana": "くる", "romaji": "iku", "hebrew": "לבוא", "hint": "__"},
 ]
