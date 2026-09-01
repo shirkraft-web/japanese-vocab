@@ -1,0 +1,33 @@
+[
+  { "topic": "professions", "kana": "せんせい", "romaji": "sensei", "hebrew": "מורה", "hint": "sen-SÉI — a teacher SAYs things" },
+  { "topic": "professions", "kana": "いしゃ", "romaji": "isha", "hebrew": "רופא", "hint": "'ee-sha' — the doctor makes you say 'aah'" },
+  { "topic": "professions", "kana": "けいさつかん", "romaji": "keisatsukan", "hebrew": "שוטר", "hint": "'kay-sats' — the cop CATCHES you" },
+  { "topic": "professions", "kana": "がくせい", "romaji": "gakusei", "hebrew": "תלמיד", "hint": "'gak-say' — a student in gaku (school)" },
+  { "topic": "professions", "kana": "りょうりにん", "romaji": "ryourinin", "hebrew": "טבח", "hint": "'ryo-ri' cooking + 'nin' person" },
+  { "topic": "professions", "kana": "うんてんしゅ", "romaji": "untenshu", "hebrew": "נהג", "hint": "'un-ten' driving + 'shu' hand/master" },
+
+  { "topic": "family", "kana": "はは", "romaji": "haha", "hebrew": "אמא", "hint": "'ha-ha' — your own mother (humble form)" },
+  { "topic": "family", "kana": "ちち", "romaji": "chichi", "hebrew": "אבא", "hint": "'chi-chi' — your own father (humble form)" },
+  { "topic": "family", "kana": "あに", "romaji": "ani", "hebrew": "אח גדול", "hint": "'ah-nee' — older brother" },
+  { "topic": "family", "kana": "あね", "romaji": "ane", "hebrew": "אחות גדולה", "hint": "'ah-neh' — older sister" },
+  { "topic": "family", "kana": "おとうと", "romaji": "otouto", "hebrew": "אח קטן", "hint": "'oh-toh-toh' — younger brother" },
+  { "topic": "family", "kana": "いもうと", "romaji": "imouto", "hebrew": "אחות קטנה", "hint": "'ee-moh-toh' — younger sister" },
+
+  { "topic": "food", "kana": "ごはん", "romaji": "gohan", "hebrew": "אורז / ארוחה", "hint": "'go-han' — rice, and by extension a meal" },
+  { "topic": "food", "kana": "みず", "romaji": "mizu", "hebrew": "מים", "hint": "'mee-zoo' — water" },
+  { "topic": "food", "kana": "さかな", "romaji": "sakana", "hebrew": "דג", "hint": "'sa-ka-na' — fish (also drinking snack)" },
+  { "topic": "food", "kana": "にく", "romaji": "niku", "hebrew": "בשר", "hint": "'nee-koo' — meat" },
+  { "topic": "food", "kana": "たまご", "romaji": "tamago", "hebrew": "ביצה", "hint": "'ta-ma-go' — egg" },
+  { "topic": "food", "kana": "やさい", "romaji": "yasai", "hebrew": "ירקות", "hint": "'ya-sigh' — vegetables" },
+
+  { "topic": "countries", "kana": "にほん", "romaji": "nihon", "hebrew": "יפן", "hint": "'nee-hon' — Japan" },
+  { "topic": "countries", "kana": "アメリカ", "romaji": "amerika", "hebrew": "ארצות הברית", "hint": "'ah-meh-ree-kah' — America" },
+  { "topic": "countries", "kana": "フランス", "romaji": "furansu", "hebrew": "צרפת", "hint": "'foo-rahn-soo' — France" },
+  { "topic": "countries", "kana": "ドイツ", "romaji": "doitsu", "hebrew": "גרמניה", "hint": "'doh-ee-tsoo' — Germany" },
+  { "topic": "countries", "kana": "イギリス", "romaji": "igirisu", "hebrew": "בריטניה", "hint": "'ee-gee-ree-soo' — England" },
+  { "topic": "countries", "kana": "ちゅうごく", "romaji": "chugoku", "hebrew": "סין", "hint": "'choo-go-koo' — China" },
+  { "topic": "countries", "kana": "かんこく", "romaji": "kankoku", "hebrew": "קוריאה", "hint": "'kan-koh-koo' — Korea" },
+  { "topic": "countries", "kana": "いすらえる", "romaji": "isuraeru", "hebrew": "ישראל", "hint": "i-su-ra-e-ru" },
+  { "topic": "countries", "kana": "ロシア", "romaji": "roshia", "hebrew": "רוסיה", "hint": "ro-shi-a" },
+  {"topic": "countries", "kana": "インド", "romaji": "indo", "hebrew": "הודו", "hint": "in-do" }
+]

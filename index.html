@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f3e7d0">
+<meta name="color-scheme" content="light">
+<title>Japanese Vocabulary</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3e7d0'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23e0742a'/%3E%3Ctext x='16' y='21' font-size='14' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%2326211d'%3E%E8%AA%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&family=Reggae+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3e7d0;
+    --paper-2: #f8efdd;
+    --ink: #26211d;
+    --orange: #e0742a;
+    --orange-dk: #c05a1c;
+    --orange-lt: #efa062;
+    --teal: #3d7c78;
+    --gold: #e6b24c;
+    --red: #cf3b2a;
+    --line: rgba(38, 33, 29, 0.22);
+    --hard: 4px 4px 0 var(--ink);
+    --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+    --font-jp: "Reggae One", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { min-height: 100%; margin: 0; }
+
+  body {
+    font-family: var(--font);
+    color: var(--ink);
+    background:
+      repeating-conic-gradient(from 0deg at 50% 34%,
+        rgba(224, 116, 42, 0.10) 0deg 7deg,
+        rgba(224, 116, 42, 0) 7deg 16deg),
+      var(--paper);
+    background-attachment: fixed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 16px 72px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .app {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    box-shadow: var(--hard);
+    padding: 30px 26px 24px;
+  }
+  .app::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1.5px solid var(--ink);
+    pointer-events: none;
+  }
+
+  .crop { position: absolute; width: 13px; height: 13px; border: 2px solid var(--ink); z-index: 2; }
+  .crop-tl { top: 3px; left: 3px; border-right: 0; border-bottom: 0; }
+  .crop-tr { top: 3px; right: 3px; border-left: 0; border-bottom: 0; }
+  .crop-bl { bottom: 3px; left: 3px; border-right: 0; border-top: 0; }
+  .crop-br { bottom: 3px; right: 3px; border-left: 0; border-top: 0; }
+
+  .doodles { position: absolute; inset: 0; pointer-events: none; }
+  .doodles .dd { position: absolute; }
+  .dd1 { top: -15px; right: 26px; }
+  .dd2 { top: 38%; left: -17px; }
+  .dd3 { bottom: 66px; right: -16px; }
+  .dd4 { bottom: -16px; left: 32px; }
+
+  header { text-align: center; margin-bottom: 18px; position: relative; z-index: 1; }
+  header h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-shadow: 2px 2px 0 var(--ink);
+  }
+  .label-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ink);
+  }
+  .label-row .rule { flex: 1; border-top: 1px dashed var(--line); }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; position: relative; z-index: 1; }
+  .tab {
+    flex: 1;
+    padding: 10px 6px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .tab.active { background: var(--orange); box-shadow: var(--hard); }
+
+  .hidden { display: none !important; }
+
+  #quizTab, #vocabTab, #errorBanner, #loading { position: relative; z-index: 1; }
+
+  .statbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    padding: 9px 12px;
+    margin-bottom: 16px;
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  .statbar .stat-xp { color: var(--orange-dk); }
+  .statbar .stat-streak { color: var(--teal); }
+  .statbar .stat-xp b, .statbar .stat-streak b { color: var(--ink); }
+  .sound-toggle {
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 3px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .sound-toggle.off { opacity: 0.45; }
+
+  .xp-float {
+    position: absolute;
+    left: 14px;
+    top: 2px;
+    font-family: var(--font-display);
+    color: var(--orange-dk);
+    font-size: 16px;
+    pointer-events: none;
+    animation: floatUp 0.9s ease-out forwards;
+  }
+  @keyframes floatUp {
+    from { transform: translateY(8px); opacity: 0; }
+    20%  { opacity: 1; }
+    to   { transform: translateY(-26px); opacity: 0; }
+  }
+
+  label.field-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    background: var(--paper-2);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 15px;
+    font-weight: 700;
+    outline: none;
+  }
+
+  .scope-line { margin: 14px 0 20px; font-size: 13px; color: rgba(38, 33, 29, 0.7); }
+  .scope-line b { color: var(--ink); }
+  .scope-line .weak-count { color: var(--orange-dk); font-weight: 700; }
+
+  button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+
+  .btn-primary {
+    width: 100%;
+    padding: 14px 22px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--orange);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    box-shadow: var(--hard);
+    transition: transform 0.08s, box-shadow 0.08s, background 0.12s;
+  }
+  .btn-primary:hover { background: var(--orange-lt); }
+  .btn-primary:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+
+  .btn-ghost {
+    padding: 10px 14px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+  }
+  .btn-ghost:hover { background: var(--paper-2); }
+
+  .quiz-topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .progress-track {
+    flex: 1;
+    height: 14px;
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--orange);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+  .progress-text {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.22); }
+    70% { transform: scale(0.94); }
+    100% { transform: scale(1); }
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(7px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(3px); }
+  }
+
+  /* ---- anime cat mascot ---- */
+  .mascot { text-align: center; margin: 2px 0 10px; }
+  .mascot svg { width: 92px; height: 92px; overflow: visible; }
+  .mascot.big svg { width: 104px; height: 104px; }
+
+  .mascot .cat-all {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: catFloat 3s ease-in-out infinite;
+  }
+  @keyframes catFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-4px) rotate(-1.5deg); }
+  }
+
+  .mascot .tail {
+    transform-box: fill-box;
+    transform-origin: 0% 100%;
+    animation: tailWag 1.8s ease-in-out infinite;
+  }
+  @keyframes tailWag {
+    0%, 100% { transform: rotate(-7deg); }
+    50% { transform: rotate(11deg); }
+  }
+
+  .mascot .ear-l { transform-box: fill-box; transform-origin: 60% 100%; animation: earTwitchL 5s ease-in-out infinite; }
+  .mascot .ear-r { transform-box: fill-box; transform-origin: 40% 100%; animation: earTwitchR 5.5s ease-in-out infinite; }
+  @keyframes earTwitchL { 0%, 87%, 100% { transform: rotate(0); } 92% { transform: rotate(-12deg); } }
+  @keyframes earTwitchR { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(12deg); } }
+
+  .mascot .eyes-normal {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: blink 4.2s infinite;
+  }
+  @keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+
+  .mascot .eyes-happy,
+  .mascot .eyes-wince { display: none; }
+  .mascot .fx { opacity: 0; }
+
+  .mascot.correct .eyes-normal { display: none; }
+  .mascot.correct .eyes-happy { display: block; }
+  .mascot.correct .blush { opacity: 0.9; }
+  .mascot.correct .cat-all { animation: catBounce 0.6s ease; }
+  .mascot.correct .sp { animation: sparklePop 0.6s ease; }
+  .mascot.correct .sp2 { animation-delay: 0.09s; }
+  .mascot.correct .sp3 { animation-delay: 0.18s; }
+
+  .mascot.wrong .eyes-normal { display: none; }
+  .mascot.wrong .eyes-wince { display: block; }
+  .mascot.wrong .cat-all { animation: catShake 0.5s ease; }
+  .mascot.wrong .sweat { animation: sweatDrop 0.75s ease; }
+
+  @keyframes catBounce {
+    0% { transform: translateY(0) scale(1); }
+    30% { transform: translateY(-15px) scale(1.09); }
+    55% { transform: translateY(0) scale(0.95); }
+    75% { transform: translateY(-6px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  @keyframes catShake {
+    0%, 100% { transform: translateX(0) rotate(0); }
+    20% { transform: translateX(-8px) rotate(-4deg); }
+    40% { transform: translateX(7px) rotate(4deg); }
+    60% { transform: translateX(-5px) rotate(-2deg); }
+    80% { transform: translateX(3px) rotate(1deg); }
+  }
+  @keyframes sparklePop {
+    0% { opacity: 0; transform: scale(0); }
+    40% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0; transform: scale(0.6); }
+  }
+  @keyframes sweatDrop {
+    0% { opacity: 0; transform: translateY(-5px); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(16px); }
+  }
+
+  .q-card {
+    position: relative;
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    box-shadow: var(--hard);
+    border-radius: 3px;
+    padding: 26px 20px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .q-card.q-in { animation: qIn 0.28s ease; }
+  @keyframes qIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .q-direction {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: rgba(38, 33, 29, 0.6);
+    margin-bottom: 12px;
+  }
+  .q-word {
+    font-family: var(--font-jp);
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    text-shadow: 3px 3px 0 var(--orange-lt);
+  }
+  .q-word .q-sub {
+    display: block;
+    font-family: var(--font-jp);
+    font-size: 18px;
+    color: rgba(38, 33, 29, 0.62);
+    text-shadow: none;
+    margin-top: 8px;
+  }
+  .speak-btn {
+    margin-top: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 3px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+  }
+  .speak-btn:hover { background: var(--paper-2); }
+  .speak-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .stamp {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    transform: rotate(-12deg) scale(1);
+    opacity: 0;
+    pointer-events: none;
+    font-family: var(--font-jp);
+    font-size: 22px;
+    padding: 5px 11px;
+    border: 3px double currentColor;
+    border-radius: 50%;
+    background: rgba(243, 231, 208, 0.85);
+  }
+  .stamp.correct { color: var(--orange-dk); }
+  .stamp.wrong { color: var(--red); }
+  .stamp.show { animation: stampIn 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) forwards; }
+  @keyframes stampIn {
+    0% { opacity: 0; transform: rotate(-12deg) scale(1.8); }
+    60% { opacity: 1; transform: rotate(-12deg) scale(0.9); }
+    100% { opacity: 1; transform: rotate(-12deg) scale(1); }
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .option {
+    min-height: 62px;
+    padding: 12px 14px;
+    font-family: var(--font);
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--paper);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    box-shadow: 3px 3px 0 var(--ink);
+    text-align: center;
+    transition: transform 0.08s, box-shadow 0.08s, background 0.12s;
+  }
+  .option:hover:not(:disabled) { background: var(--paper-2); }
+  .option:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+  .option:disabled { cursor: default; }
+  .option.correct { background: var(--orange); color: var(--ink); animation: pop 0.35s ease; }
+  .option.wrong { background: var(--red); color: var(--paper); animation: shake 0.35s ease; }
+  @media (max-width: 420px) {
+    .options { grid-template-columns: 1fr; }
+    .q-word { font-size: 33px; }
+  }
+
+  .hint-box {
+    background: var(--paper);
+    border: 2px dashed var(--ink);
+    border-radius: 3px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .hint-box b {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--orange-dk);
+  }
+
+  .row-actions { display: flex; gap: 10px; }
+  .row-actions .btn-primary { flex: 1; }
+
+  .result-score { text-align: center; margin-bottom: 20px; }
+  .result-score .mascot.big { margin-bottom: 4px; }
+  .result-score .big {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--orange);
+    text-shadow: 3px 3px 0 var(--ink);
+    line-height: 1;
+  }
+  .result-score .sub {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(38, 33, 29, 0.7);
+    margin-top: 8px;
+  }
+  .result-badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .result-badges span {
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    padding: 7px 12px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  .result-badges .xp { color: var(--orange-dk); }
+  .result-badges .streak { color: var(--teal); }
+  .result-badges b { color: var(--ink); }
+
+  .missed-list { display: grid; gap: 8px; margin-bottom: 20px; }
+  .missed-list h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: rgba(38, 33, 29, 0.6);
+    margin: 0 0 4px;
+  }
+  .missed-item {
+    background: var(--paper-2);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .missed-item .body { flex: 1; }
+  .missed-item .jp { font-weight: 700; }
+  .missed-item .he { color: rgba(38, 33, 29, 0.7); }
+  .missed-item .hint { display: block; font-size: 12px; color: var(--orange-dk); margin-top: 3px; }
+
+  .mini-speak {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 12px;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+  }
+  .mini-speak:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .topic-group { margin-bottom: 10px; }
+  .topic-group summary {
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+    background: var(--paper-2);
+    list-style: none;
+  }
+  .topic-group summary::-webkit-details-marker { display: none; }
+  .topic-group summary .count { color: rgba(38, 33, 29, 0.6); }
+  .vocab-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px dashed var(--line);
+    font-size: 14px;
+  }
+  .vocab-row:last-child { border-bottom: none; }
+  .vocab-row .body { flex: 1; }
+  .vocab-row .jp { font-weight: 700; }
+  .vocab-row .romaji { color: rgba(38, 33, 29, 0.6); }
+  .vocab-row .he { color: rgba(38, 33, 29, 0.7); }
+  .vocab-row .hint { display: block; font-size: 12px; color: rgba(38, 33, 29, 0.6); margin-top: 3px; }
+  .weak-badge {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--orange-dk);
+    border: 2px solid var(--orange-dk);
+    border-radius: 2px;
+    padding: 0 5px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  .loading { text-align: center; color: rgba(38, 33, 29, 0.6); font-size: 14px; padding: 20px 0; }
+
+  .error-banner {
+    background: var(--paper-2);
+    border: 2px solid var(--red);
+    color: var(--red);
+    border-radius: 3px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .error-banner ul { margin: 8px 0 0; padding-left: 18px; }
+  .error-banner code { background: rgba(38, 33, 29, 0.08); padding: 1px 4px; }
+
+  body.no-tts .speak-btn,
+  body.no-tts .mini-speak { display: none; }
+
+  @media (max-width: 480px) {
+    .doodles { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .option.correct, .option.wrong,
+    .q-card.q-in, .xp-float,
+    .mascot .cat-all, .mascot .tail, .mascot .ear-l, .mascot .ear-r,
+    .mascot .eyes-normal, .mascot .sp, .mascot .sweat { animation: none !important; }
+    .stamp.show {
+      animation: none !important;
+      opacity: 1;
+      transform: rotate(-12deg) scale(1);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <span class="crop crop-tl"></span><span class="crop crop-tr"></span>
+  <span class="crop crop-bl"></span><span class="crop crop-br"></span>
+
+  <div class="doodles" aria-hidden="true">
+    <svg class="dd dd1" width="28" height="28" viewBox="0 0 24 24">
+      <path d="M13 2 L4 14 h6 l-2 8 l10 -13 h-6 z" fill="var(--orange)" stroke="var(--ink)" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    <svg class="dd dd2" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M12 1 l2.4 7.6 L22 11 l-7.6 2.4 L12 21 l-2.4 -7.6 L2 11 l7.6 -2.4 z" fill="var(--ink)"/>
+    </svg>
+    <svg class="dd dd3" width="30" height="18" viewBox="0 0 30 18">
+      <polyline points="1,9 6,2 12,16 18,2 24,16 29,9" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+    <svg class="dd dd4" width="24" height="26" viewBox="0 0 24 26">
+      <path d="M4 2 h16 M4 24 h16 M5 2 l7 9 l7 -9 M5 24 l7 -9 l7 9" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <header>
+    <h1>Japanese Vocabulary</h1>
+    <div class="label-row"><span>Study drill</span><span class="rule"></span><span>日本語</span></div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="quiz">Quiz</div>
+    <div class="tab" data-tab="vocab">Vocabulary</div>
+  </div>
+
+  <div id="errorBanner" class="error-banner hidden"></div>
+  <div id="loading" class="loading">Loading vocabulary…</div>
+
+  <!-- QUIZ TAB -->
+  <div id="quizTab" class="hidden">
+
+    <div class="statbar" id="statBar">
+      <span class="stat-xp">⭐ <b id="xpVal">0</b> XP</span>
+      <span class="stat-streak">🔥 <b id="streakVal">0</b></span>
+      <button class="sound-toggle" id="soundToggle" title="Toggle answer sounds">🔊</button>
+    </div>
+
+    <div id="setupView">
+      <label class="field-label" for="topicSelect">Topic</label>
+      <select id="topicSelect"></select>
+      <div class="scope-line" id="scopeLine"></div>
+      <button class="btn-primary" id="startBtn">Start quiz</button>
+    </div>
+
+    <div id="activeView" class="hidden">
+      <div class="quiz-topbar">
+        <button class="btn-ghost" id="quitBtn">Quit</button>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">0 / 0</div>
+      </div>
+
+      <div class="mascot" id="mascot"></div>
+
+      <div class="q-card" id="qCard">
+        <div class="q-direction" id="qDirection"></div>
+        <div class="q-word" id="qWord" dir="auto"></div>
+        <button class="speak-btn" id="speakBtn" title="Play audio">🔊</button>
+        <div class="stamp" id="stamp"></div>
+      </div>
+
+      <div class="options" id="options"></div>
+      <div class="hint-box hidden" id="hintBox"></div>
+      <div class="row-actions">
+        <button class="btn-primary hidden" id="nextBtn">Next</button>
+      </div>
+    </div>
+
+    <div id="endView" class="hidden">
+      <div class="result-score">
+        <div class="mascot big" id="endMascot"></div>
+        <div class="big" id="scoreBig">0%</div>
+        <div class="sub" id="scoreSub"></div>
+        <div class="result-badges">
+          <span class="xp">⭐ +<b id="sessionXp">0</b> XP</span>
+          <span class="streak">🔥 <b id="endStreak">0</b></span>
+        </div>
+      </div>
+      <div class="missed-list hidden" id="missedList"></div>
+      <div class="row-actions">
+        <button class="btn-ghost" id="backBtn">Back to topics</button>
+        <button class="btn-primary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VOCAB TAB -->
+  <div id="vocabTab" class="hidden"></div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var STORE_KEY = "jpVocabProgress";
+  var GAME_KEY = "jpVocabGame";
+  var ALL = "__all__";
+
+  var VOCAB = [];
+  var progress = loadProgress();
+  var game = loadGame();
+  var session = null;
+  var jaVoice = null;
+  var audioCtx = null;
+
+  var el = {
+    errorBanner: document.getElementById("errorBanner"),
+    loading: document.getElementById("loading"),
+    quizTab: document.getElementById("quizTab"),
+    vocabTab: document.getElementById("vocabTab"),
+    statBar: document.getElementById("statBar"),
+    xpVal: document.getElementById("xpVal"),
+    streakVal: document.getElementById("streakVal"),
+    soundToggle: document.getElementById("soundToggle"),
+    setupView: document.getElementById("setupView"),
+    activeView: document.getElementById("activeView"),
+    endView: document.getElementById("endView"),
+    topicSelect: document.getElementById("topicSelect"),
+    scopeLine: document.getElementById("scopeLine"),
+    startBtn: document.getElementById("startBtn"),
+    quitBtn: document.getElementById("quitBtn"),
+    progressFill: document.getElementById("progressFill"),
+    progressText: document.getElementById("progressText"),
+    mascot: document.getElementById("mascot"),
+    qCard: document.getElementById("qCard"),
+    qDirection: document.getElementById("qDirection"),
+    qWord: document.getElementById("qWord"),
+    speakBtn: document.getElementById("speakBtn"),
+    stamp: document.getElementById("stamp"),
+    options: document.getElementById("options"),
+    hintBox: document.getElementById("hintBox"),
+    nextBtn: document.getElementById("nextBtn"),
+    endMascot: document.getElementById("endMascot"),
+    scoreBig: document.getElementById("scoreBig"),
+    scoreSub: document.getElementById("scoreSub"),
+    sessionXp: document.getElementById("sessionXp"),
+    endStreak: document.getElementById("endStreak"),
+    missedList: document.getElementById("missedList"),
+    backBtn: document.getElementById("backBtn"),
+    restartBtn: document.getElementById("restartBtn"),
+    tabs: document.querySelectorAll(".tab")
+  };
+
+  /* ---------- storage ---------- */
+
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveProgress() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(progress)); }
+    catch (e) { /* storage unavailable */ }
+  }
+  function statFor(romaji) {
+    if (!progress[romaji]) progress[romaji] = { seen: 0, wrong: 0, lastWrong: 0 };
+    return progress[romaji];
+  }
+  function isWeak(romaji) {
+    return !!(progress[romaji] && progress[romaji].wrong > 0);
+  }
+
+  function loadGame() {
+    var g = {};
+    try { g = JSON.parse(localStorage.getItem(GAME_KEY)) || {}; }
+    catch (e) { g = {}; }
+    return {
+      xp: typeof g.xp === "number" ? g.xp : 0,
+      streak: typeof g.streak === "number" ? g.streak : 0,
+      sound: g.sound !== false
+    };
+  }
+  function saveGame() {
+    try { localStorage.setItem(GAME_KEY, JSON.stringify(game)); }
+    catch (e) { /* storage unavailable */ }
+  }
+  function renderStatBar() {
+    el.xpVal.textContent = game.xp;
+    el.streakVal.textContent = game.streak;
+    el.soundToggle.textContent = game.sound ? "🔊" : "🔇";
+    el.soundToggle.classList.toggle("off", !game.sound);
+  }
+
+  el.soundToggle.addEventListener("click", function () {
+    game.sound = !game.sound;
+    saveGame();
+    renderStatBar();
+  });
+
+  /* ---------- sound (Web Audio, no files) ---------- */
+
+  function ensureAudio() {
+    if (audioCtx) return audioCtx;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    try { audioCtx = new AC(); } catch (e) { audioCtx = null; }
+    return audioCtx;
+  }
+
+  function blip(ctx, freq, startT, dur, type) {
+    var osc = ctx.createOscillator();
+    var g = ctx.createGain();
+    osc.type = type || "square";
+    osc.frequency.setValueAtTime(freq, startT);
+    g.gain.setValueAtTime(0.0001, startT);
+    g.gain.exponentialRampToValueAtTime(0.25, startT + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, startT + dur);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(startT); osc.stop(startT + dur + 0.03);
+  }
+
+  function sfxCorrect() {
+    if (!game.sound) return;
+    var ctx = ensureAudio(); if (!ctx) return;
+    if (ctx.state === "suspended") ctx.resume();
+    var t = ctx.currentTime;
+    blip(ctx, 660, t, 0.07, "square");
+    blip(ctx, 990, t + 0.085, 0.10, "square");
+  }
+
+  function sfxWrong() {
+    if (!game.sound) return;
+    var ctx = ensureAudio(); if (!ctx) return;
+    if (ctx.state === "suspended") ctx.resume();
+    var t = ctx.currentTime;
+    var osc = ctx.createOscillator();
+    var g = ctx.createGain();
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(300, t);
+    osc.frequency.exponentialRampToValueAtTime(110, t + 0.25);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.2, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+    osc.connect(g); g.connect(ctx.destination);
+    osc.start(t); osc.stop(t + 0.3);
+  }
+
+  /* ---------- mascot + xp float ---------- */
+
+  var MASCOT_SVG = [
+    '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">',
+    '<g class="cat-all">',
+    '<path class="tail" d="M90 96 q24 6 22 -18 q-2 -15 -13 -15" fill="none" stroke="#26211d" stroke-width="6" stroke-linecap="round"/>',
+    '<ellipse class="body" cx="60" cy="88" rx="33" ry="24" fill="#f8efdd" stroke="#26211d" stroke-width="3"/>',
+    '<g class="head">',
+    '<path class="ear ear-l" d="M28 46 L20 12 L50 30 Z" fill="#f8efdd" stroke="#26211d" stroke-width="3" stroke-linejoin="round"/>',
+    '<path class="ear ear-r" d="M92 46 L100 12 L70 30 Z" fill="#f8efdd" stroke="#26211d" stroke-width="3" stroke-linejoin="round"/>',
+    '<path d="M31 40 L27 20 L42 31 Z" fill="#efa062"/>',
+    '<path d="M89 40 L93 20 L78 31 Z" fill="#efa062"/>',
+    '<ellipse cx="60" cy="58" rx="40" ry="36" fill="#f8efdd" stroke="#26211d" stroke-width="3"/>',
+    '<ellipse class="blush" cx="37" cy="66" rx="7" ry="4" fill="#efa062" opacity="0.55"/>',
+    '<ellipse class="blush" cx="83" cy="66" rx="7" ry="4" fill="#efa062" opacity="0.55"/>',
+    '<g class="eyes eyes-normal">',
+    '<ellipse class="eye" cx="45" cy="56" rx="8" ry="11" fill="#26211d"/>',
+    '<ellipse class="eye" cx="75" cy="56" rx="8" ry="11" fill="#26211d"/>',
+    '<circle cx="42" cy="52" r="3" fill="#fff"/><circle cx="72" cy="52" r="3" fill="#fff"/>',
+    '<circle cx="47" cy="61" r="1.6" fill="#fff"/><circle cx="77" cy="61" r="1.6" fill="#fff"/>',
+    '</g>',
+    '<g class="eyes eyes-happy">',
+    '<path d="M37 58 q8 -11 16 0" fill="none" stroke="#26211d" stroke-width="3.5" stroke-linecap="round"/>',
+    '<path d="M67 58 q8 -11 16 0" fill="none" stroke="#26211d" stroke-width="3.5" stroke-linecap="round"/>',
+    '</g>',
+    '<g class="eyes eyes-wince">',
+    '<path d="M37 50 l15 6 l-15 6" fill="none" stroke="#26211d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    '<path d="M83 50 l-15 6 l15 6" fill="none" stroke="#26211d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    '</g>',
+    '<path d="M55 70 h10 l-5 5 Z" fill="#e0742a" stroke="#26211d" stroke-width="1.5" stroke-linejoin="round"/>',
+    '<path d="M60 75 q-5 6 -11 2 M60 75 q5 6 11 2" fill="none" stroke="#26211d" stroke-width="2" stroke-linecap="round"/>',
+    '<g stroke="#26211d" stroke-width="2" stroke-linecap="round">',
+    '<line x1="18" y1="60" x2="35" y2="58"/><line x1="18" y1="69" x2="35" y2="66"/>',
+    '<line x1="102" y1="60" x2="85" y2="58"/><line x1="102" y1="69" x2="85" y2="66"/>',
+    '</g>',
+    '<path class="fx sp sp1" d="M13 30 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2 l6 -2 Z" fill="#e6b24c"/>',
+    '<path class="fx sp sp2" d="M105 24 l1.6 5 l5 1.6 l-5 1.6 l-1.6 5 l-1.6 -5 l-5 -1.6 l5 -1.6 Z" fill="#e6b24c"/>',
+    '<path class="fx sp sp3" d="M102 82 l1.4 4 l4 1.4 l-4 1.4 l-1.4 4 l-1.4 -4 l-4 -1.4 l4 -1.4 Z" fill="#e6b24c"/>',
+    '<path class="fx sweat" d="M95 34 q-6 9 0 13 q6 -4 0 -13 Z" fill="#3d7c78" stroke="#26211d" stroke-width="1"/>',
+    '</g>',
+    '</g>',
+    '</svg>'
+  ].join("");
+
+  function setMascot(state) {
+    var m = el.mascot;
+    m.classList.remove("correct", "wrong");
+    void m.offsetWidth;
+    if (state === "correct") m.classList.add("correct");
+    else if (state === "wrong") m.classList.add("wrong");
+  }
+
+  function setStamp(state) {
+    if (state === "correct") { el.stamp.textContent = "正解"; el.stamp.className = "stamp show correct"; }
+    else if (state === "wrong") { el.stamp.textContent = "不正解"; el.stamp.className = "stamp show wrong"; }
+    else { el.stamp.textContent = ""; el.stamp.className = "stamp"; }
+  }
+
+  function floatXp(txt) {
+    var s = document.createElement("span");
+    s.className = "xp-float";
+    s.textContent = txt;
+    el.statBar.appendChild(s);
+    setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 950);
+  }
+
+  /* ---------- load + validate ---------- */
+
+  fetch("./vocab.json?v=" + Date.now(), { cache: "no-store" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status + " fetching vocab.json");
+      return r.json();
+    })
+    .then(init)
+    .catch(function (err) {
+      el.loading.classList.add("hidden");
+      showError("Could not load <code>vocab.json</code>.<br>" + escapeHtml(String(err && err.message || err)) +
+        "<br><br>If you opened this file directly, run a local server instead: " +
+        "<code>python -m http.server</code> then open <code>http://localhost:8000/</code>.");
+    });
+
+  function init(data) {
+    var problems = validate(data);
+    if (problems.length) {
+      el.loading.classList.add("hidden");
+      showError("<b>vocab.json has problems — quiz not started.</b><ul>" +
+        problems.map(function (p) { return "<li>" + escapeHtml(p) + "</li>"; }).join("") + "</ul>");
+      return;
+    }
+    VOCAB = data;
+    el.loading.classList.add("hidden");
+    el.quizTab.classList.remove("hidden");
+    el.mascot.innerHTML = MASCOT_SVG;
+    el.endMascot.innerHTML = MASCOT_SVG;
+
+    if (!("speechSynthesis" in window)) {
+      document.body.classList.add("no-tts");
+    } else {
+      loadVoice();
+      window.speechSynthesis.onvoiceschanged = loadVoice;
+      setTimeout(loadVoice, 400);
+      setTimeout(loadVoice, 1500);
+    }
+
+    renderStatBar();
+    buildTopicSelect();
+    updateScopeLine();
+    renderVocabTab();
+  }
+
+  function validate(data) {
+    var problems = [];
+    if (!Array.isArray(data)) { return ["Top level is not a JSON array."]; }
+    if (data.length === 0) { return ["The array is empty — add some words."]; }
+    var fields = ["topic", "kana", "romaji", "hebrew", "hint"];
+    data.forEach(function (row, i) {
+      if (typeof row !== "object" || row === null) {
+        problems.push("Row " + (i + 1) + " is not an object.");
+        return;
+      }
+      fields.forEach(function (f) {
+        if (typeof row[f] !== "string") {
+          problems.push("Row " + (i + 1) + ' is missing "' + f + '" (or it is not text).');
+        } else if (f !== "hint" && row[f].trim() === "") {
+          problems.push("Row " + (i + 1) + ' has an empty "' + f + '".');
+        }
+      });
+    });
+    return problems;
+  }
+
+  function showError(html) {
+    el.errorBanner.innerHTML = html;
+    el.errorBanner.classList.remove("hidden");
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  /* ---------- TTS ---------- */
+
+  function loadVoice() {
+    var voices = window.speechSynthesis.getVoices() || [];
+    jaVoice = null;
+    for (var i = 0; i < voices.length; i++) {
+      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf("ja") === 0) { jaVoice = voices[i]; break; }
+    }
+    refreshSpeakButtons();
+  }
+
+  // enabled whenever the API exists — a matching ja voice is preferred but not required
+  function ttsReady() { return ("speechSynthesis" in window); }
+
+  function speak(text) {
+    if (!("speechSynthesis" in window)) return;
+    try {
+      var synth = window.speechSynthesis;
+      synth.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "ja-JP";
+      if (jaVoice) u.voice = jaVoice;
+      u.rate = 0.9;
+      // Chrome drops a speak() issued synchronously right after cancel()
+      setTimeout(function () {
+        try { synth.resume(); synth.speak(u); } catch (e) { /* ignore */ }
+      }, 60);
+    } catch (e) { /* ignore */ }
+  }
+
+  function refreshSpeakButtons() {
+    var ready = ttsReady();
+    var title = ready ? "Play audio" : "Speech not supported in this browser";
+    document.querySelectorAll(".speak-btn, .mini-speak").forEach(function (b) {
+      var gate = b.getAttribute("data-gated") === "1";
+      b.disabled = !ready || gate;
+      b.title = title;
+    });
+  }
+
+  /* ---------- tabs ---------- */
+
+  el.tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      el.tabs.forEach(function (x) { x.classList.toggle("active", x === t); });
+      var which = t.getAttribute("data-tab");
+      el.quizTab.classList.toggle("hidden", which !== "quiz" || VOCAB.length === 0);
+      el.vocabTab.classList.toggle("hidden", which !== "vocab");
+    });
+  });
+
+  /* ---------- setup ---------- */
+
+  function distinctTopics() {
+    var seen = {}, out = [];
+    VOCAB.forEach(function (w) { if (!seen[w.topic]) { seen[w.topic] = 1; out.push(w.topic); } });
+    out.sort();
+    return out;
+  }
+
+  function buildTopicSelect() {
+    var opts = ['<option value="' + ALL + '">All words</option>'];
+    distinctTopics().forEach(function (tp) {
+      opts.push('<option value="' + escapeHtml(tp) + '">' + escapeHtml(tp) + "</option>");
+    });
+    el.topicSelect.innerHTML = opts.join("");
+  }
+
+  function scopeWords() {
+    var v = el.topicSelect.value;
+    return v === ALL ? VOCAB.slice() : VOCAB.filter(function (w) { return w.topic === v; });
+  }
+
+  function updateScopeLine() {
+    var words = scopeWords();
+    var weak = words.filter(function (w) { return isWeak(w.romaji); }).length;
+    var html = "<b>" + words.length + "</b> word" + (words.length === 1 ? "" : "s");
+    if (weak > 0) html += ' · <span class="weak-count">' + weak + " marked weak</span>";
+    el.scopeLine.innerHTML = html;
+  }
+
+  el.topicSelect.addEventListener("change", updateScopeLine);
+
+  /* ---------- session ---------- */
+
+  el.startBtn.addEventListener("click", startSession);
+  el.restartBtn.addEventListener("click", startSession);
+  el.backBtn.addEventListener("click", showSetup);
+
+  el.quitBtn.addEventListener("click", function () {
+    if (window.confirm("Quit this quiz? Your XP, streak and answered words are kept.")) showSetup();
+  });
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function startSession() {
+    var words = scopeWords();
+    if (words.length < 2) {
+      window.alert("Need at least 2 words in this selection to run a quiz.");
+      return;
+    }
+
+    // first user gesture — unlock audio
+    var ctx = ensureAudio();
+    if (ctx && ctx.state === "suspended") ctx.resume();
+
+    var weak = shuffle(words.filter(function (w) { return isWeak(w.romaji); }));
+    var rest = shuffle(words.filter(function (w) { return !isWeak(w.romaji); }));
+    session = {
+      topic: el.topicSelect.value,
+      pool: words,
+      queue: weak.concat(rest),
+      total: words.length,
+      firstTry: {},
+      missed: {},
+      xpEarned: 0,
+      answered: false,
+      current: null,
+      direction: null
+    };
+    el.setupView.classList.add("hidden");
+    el.endView.classList.add("hidden");
+    el.activeView.classList.remove("hidden");
+    nextQuestion();
+  }
+
+  function showSetup() {
+    session = null;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    el.activeView.classList.add("hidden");
+    el.endView.classList.add("hidden");
+    el.setupView.classList.remove("hidden");
+    renderStatBar();
+    buildTopicSelect();
+    updateScopeLine();
+    renderVocabTab();
+  }
+
+  function clearedCount() {
+    return session.pool.filter(function (w) {
+      return session.firstTry.hasOwnProperty(w.romaji) &&
+             session.queue.indexOf(w) === -1;
+    }).length;
+  }
+
+  function nextQuestion() {
+    if (session.queue.length === 0) { endSession(); return; }
+
+    session.current = session.queue.shift();
+    session.answered = false;
+    session.direction = Math.random() < 0.5 ? "ja2he" : "he2ja";
+
+    var cur = session.current;
+    var jaPrompt = session.direction === "ja2he";
+
+    setMascot("idle");
+    setStamp(null);
+    el.qCard.classList.remove("q-in");
+    void el.qCard.offsetWidth;
+    el.qCard.classList.add("q-in");
+
+    el.qDirection.textContent = "Choose the correct translation";
+
+    if (jaPrompt) {
+      el.qWord.innerHTML = escapeHtml(cur.romaji) + '<span class="q-sub">' + escapeHtml(cur.kana) + "</span>";
+    } else {
+      el.qWord.textContent = cur.hebrew;
+    }
+
+    el.speakBtn.setAttribute("data-gated", jaPrompt ? "0" : "1");
+    refreshSpeakButtons();
+    if (jaPrompt) speak(cur.kana);
+
+    renderOptions();
+
+    el.hintBox.classList.add("hidden");
+    el.nextBtn.classList.add("hidden");
+    updateProgressBar();
+  }
+
+  function answerValue(w) {
+    return session.direction === "ja2he" ? w.hebrew : w.romaji;
+  }
+
+  function renderOptions() {
+    var cur = session.current;
+    var correctVal = answerValue(cur);
+
+    var candidates = session.pool.filter(function (w) { return w !== cur; });
+    if (uniqueAnswerCount(candidates) < 3) {
+      candidates = VOCAB.filter(function (w) { return w.romaji !== cur.romaji; });
+    }
+    candidates = shuffle(candidates.slice());
+
+    var used = {}; used[correctVal] = 1;
+    var picks = [];
+    for (var i = 0; i < candidates.length && picks.length < 3; i++) {
+      var val = answerValue(candidates[i]);
+      if (!used[val]) { used[val] = 1; picks.push(val); }
+    }
+
+    var all = shuffle([correctVal].concat(picks));
+    el.options.innerHTML = "";
+    all.forEach(function (val) {
+      var b = document.createElement("button");
+      b.className = "option";
+      b.textContent = val;
+      b.setAttribute("dir", "auto");
+      b.addEventListener("click", function () { onAnswer(b, val); });
+      el.options.appendChild(b);
+    });
+  }
+
+  function uniqueAnswerCount(list) {
+    var seen = {}, n = 0;
+    list.forEach(function (w) { var v = answerValue(w); if (!seen[v]) { seen[v] = 1; n++; } });
+    return n;
+  }
+
+  function onAnswer(btn, val) {
+    if (session.answered) return;
+    session.answered = true;
+
+    var cur = session.current;
+    var correctVal = answerValue(cur);
+    var right = val === correctVal;
+
+    var st = statFor(cur.romaji);
+    st.seen += 1;
+    if (!right) { st.wrong += 1; st.lastWrong = Date.now(); }
+    saveProgress();
+
+    if (!session.firstTry.hasOwnProperty(cur.romaji)) {
+      session.firstTry[cur.romaji] = right;
+    }
+
+    if (right) {
+      sfxCorrect();
+      game.xp += 10;
+      game.streak += 1;
+      session.xpEarned += 10;
+      setMascot("correct");
+      setStamp("correct");
+      floatXp("+10");
+    } else {
+      sfxWrong();
+      game.streak = 0;
+      setMascot("wrong");
+      setStamp("wrong");
+    }
+    saveGame();
+    renderStatBar();
+
+    Array.prototype.forEach.call(el.options.children, function (b) {
+      b.disabled = true;
+      if (b.textContent === correctVal) b.classList.add("correct");
+      else if (b === btn) b.classList.add("wrong");
+    });
+
+    if (!right) {
+      session.missed[cur.romaji] = true;
+      var pos = Math.min(3, session.queue.length);
+      session.queue.splice(pos, 0, cur);
+      el.hintBox.innerHTML = "<b>Answer:</b> " +
+        escapeHtml(cur.kana) + " (" + escapeHtml(cur.romaji) + ") = " + escapeHtml(cur.hebrew) +
+        (cur.hint ? "<br><b>Remember:</b> " + escapeHtml(cur.hint) : "");
+      el.hintBox.classList.remove("hidden");
+    }
+
+    el.speakBtn.setAttribute("data-gated", "0");
+    refreshSpeakButtons();
+    if (session.direction === "he2ja") speak(cur.kana);
+
+    el.nextBtn.textContent = session.queue.length === 0 ? "See results" : "Next";
+    el.nextBtn.classList.remove("hidden");
+    updateProgressBar();
+  }
+
+  el.nextBtn.addEventListener("click", function () { nextQuestion(); });
+
+  el.speakBtn.addEventListener("click", function () {
+    if (session && session.current) speak(session.current.kana);
+  });
+
+  function updateProgressBar() {
+    var cleared = clearedCount();
+    var pct = session.total ? Math.round((cleared / session.total) * 100) : 0;
+    el.progressFill.style.width = pct + "%";
+    el.progressText.textContent = cleared + " / " + session.total;
+  }
+
+  function endSession() {
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    el.activeView.classList.add("hidden");
+    el.endView.classList.remove("hidden");
+
+    var romajis = Object.keys(session.firstTry);
+    var firstRight = romajis.filter(function (k) { return session.firstTry[k]; }).length;
+    var total = session.total;
+    var pct = total ? Math.round((firstRight / total) * 100) : 0;
+
+    el.endMascot.className = "mascot big" + (pct === 100 ? " correct" : "");
+    el.scoreBig.textContent = pct + "%";
+    el.scoreSub.textContent = firstRight + " of " + total + " right on the first try";
+    el.sessionXp.textContent = session.xpEarned;
+    el.endStreak.textContent = game.streak;
+
+    var missedRomajis = Object.keys(session.missed);
+    if (missedRomajis.length === 0) {
+      el.missedList.classList.add("hidden");
+      el.missedList.innerHTML = "";
+    } else {
+      var byRomaji = {};
+      VOCAB.forEach(function (w) { byRomaji[w.romaji] = w; });
+      var rows = missedRomajis.map(function (k) {
+        var w = byRomaji[k];
+        if (!w) return "";
+        return '<div class="missed-item">' +
+          '<button class="mini-speak" data-kana="' + escapeHtml(w.kana) + '">🔊</button>' +
+          '<div class="body">' +
+            '<span class="jp">' + escapeHtml(w.kana) + " · " + escapeHtml(w.romaji) + "</span> " +
+            '<span class="he" dir="auto">— ' + escapeHtml(w.hebrew) + "</span>" +
+            (w.hint ? '<span class="hint">' + escapeHtml(w.hint) + "</span>" : "") +
+          "</div>" +
+        "</div>";
+      }).join("");
+      el.missedList.innerHTML = "<h3>Missed at least once (" + missedRomajis.length + ")</h3>" + rows;
+      el.missedList.classList.remove("hidden");
+      wireMiniSpeak(el.missedList);
+    }
+
+    renderStatBar();
+    buildTopicSelect();
+    updateScopeLine();
+    renderVocabTab();
+  }
+
+  /* ---------- vocab tab ---------- */
+
+  function renderVocabTab() {
+    var groups = {};
+    VOCAB.forEach(function (w) { (groups[w.topic] = groups[w.topic] || []).push(w); });
+    var topics = Object.keys(groups).sort();
+
+    el.vocabTab.innerHTML = topics.map(function (tp) {
+      var rows = groups[tp].map(function (w) {
+        return '<div class="vocab-row">' +
+          '<button class="mini-speak" data-kana="' + escapeHtml(w.kana) + '">🔊</button>' +
+          '<div class="body">' +
+            '<span class="jp">' + escapeHtml(w.kana) +
+              ' <span class="romaji">' + escapeHtml(w.romaji) + "</span></span> " +
+            '<span class="he" dir="auto">— ' + escapeHtml(w.hebrew) + "</span>" +
+            (isWeak(w.romaji) ? '<span class="weak-badge">weak</span>' : "") +
+            (w.hint ? '<span class="hint">' + escapeHtml(w.hint) + "</span>" : "") +
+          "</div>" +
+        "</div>";
+      }).join("");
+      return '<details class="topic-group" open><summary>' +
+        escapeHtml(tp) + ' <span class="count">(' + groups[tp].length + ")</span></summary>" +
+        rows + "</details>";
+    }).join("");
+
+    wireMiniSpeak(el.vocabTab);
+  }
+
+  function wireMiniSpeak(root) {
+    root.querySelectorAll(".mini-speak").forEach(function (b) {
+      b.addEventListener("click", function () { speak(b.getAttribute("data-kana")); });
+    });
+    refreshSpeakButtons();
+  }
+
+})();
+</script>
+
+</body>
+</html>
