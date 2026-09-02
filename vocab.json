@@ -30,6 +30,7 @@
   { "topic": "food", "kana": "おそば", "romaji": "osoba", "hebrew": "סובה", "hint": "__" },
   { "topic": "food", "kana": "おすし", "romaji": "osushi", "hebrew": "סושי", "hint": "__" },
   { "topic": "food", "kana": "レモン", "romaji": "remon", "hebrew": "לימון", "hint": "__" },
+  {"topic": "food", "kana": "ハンバーガ", "romaji": "hamba-ga", "hebrew": "המבורגר", "hint": "__"},
   { "topic": "food", "kana": "おいしい", "romaji": "oishii", "hebrew": "טעים", "hint": "__" },
   { "topic": "food", "kana": "ベジタリアン", "romaji": "bejitarian", "hebrew": "צמחוני", "hint": "__" },
   
@@ -145,10 +146,9 @@
   {"topic": "nouns", "kana": "そうじ", "romaji": "souji", "hebrew": "ניקיון", "hint": "__"},
   {"topic": "nouns", "kana": "テニス", "romaji": "tenisu", "hebrew": "טניס", "hint": "__"},
   {"topic": "nouns", "kana": "デート", "romaji": "de-to", "hebrew": "דייט", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "eiga", "hebrew": "סרט", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "hamba-ga", "hebrew": "המבורגר", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "ongaku", "hebrew": "מוזיקה", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "terebi", "hebrew": "טלויזיה", "hint": "__"},
+  {"topic": "nouns", "kana": "えいが", "romaji": "eiga", "hebrew": "סרט", "hint": "__"},
+  {"topic": "nouns", "kana": "おんがく", "romaji": "ongaku", "hebrew": "מוזיקה", "hint": "__"},
+  {"topic": "nouns", "kana": "テレビ", "romaji": "terebi", "hebrew": "טלויזיה", "hint": "__"},
 
   {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
   {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
