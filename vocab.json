@@ -58,7 +58,7 @@
   { "topic": "numbers", "kana": "ろっぴゃく", "romaji": "roppyaku", "hebrew": "600", "hint": "sound change: roku + hyaku" },
   { "topic": "numbers", "kana": "はっぴゃく", "romaji": "happyaku", "hebrew": "800", "hint": "sound change: hachi + hyaku" },
   { "topic": "numbers", "kana": "さんぜん", "romaji": "sanzen", "hebrew": "3000", "hint": "sound change: san + sen" },
-  { "topic": "numbers", "kana": "はっせん", "romaji": "hassen", "hebrew": "8000", "hint": "sound change: hachi + sen" }
+  { "topic": "numbers", "kana": "はっせん", "romaji": "hassen", "hebrew": "8000", "hint": "sound change: hachi + sen" },
 
   {"topic": "verbs", "kana": "いく", "romaji": "iku", "hebrew": "ללכת", "hint": "__"},
   {"topic": "verbs", "kana": "きく", "romaji": "kiku", "hebrew": "לשמוע", "hint": "להקשיב לקיקי"},
