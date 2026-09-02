@@ -1211,17 +1211,22 @@
     var cur = session.current;
     var correctVal = answerValue(cur);
 
-    var candidates = session.pool.filter(function (w) { return w !== cur; });
-    if (uniqueAnswerCount(candidates) < 3) {
-      candidates = VOCAB.filter(function (w) { return w.romaji !== cur.romaji; });
-    }
-    candidates = shuffle(candidates.slice());
-
     var used = {}; used[correctVal] = 1;
     var picks = [];
-    for (var i = 0; i < candidates.length && picks.length < 3; i++) {
-      var val = answerValue(candidates[i]);
-      if (!used[val]) { used[val] = 1; picks.push(val); }
+
+    function drawFrom(list) {
+      var shuffled = shuffle(list.slice());
+      for (var i = 0; i < shuffled.length && picks.length < 3; i++) {
+        var val = answerValue(shuffled[i]);
+        if (!used[val]) { used[val] = 1; picks.push(val); }
+      }
+    }
+
+    // 1) same scope as the quiz — the chosen topic, or all words
+    drawFrom(session.pool.filter(function (w) { return w !== cur; }));
+    // 2) only if that topic is too small to fill 4 options, top up from the rest
+    if (picks.length < 3) {
+      drawFrom(VOCAB.filter(function (w) { return w.romaji !== cur.romaji; }));
     }
 
     var all = shuffle([correctVal].concat(picks));
@@ -1234,12 +1239,6 @@
       b.addEventListener("click", function () { onAnswer(b, val); });
       el.options.appendChild(b);
     });
-  }
-
-  function uniqueAnswerCount(list) {
-    var seen = {}, n = 0;
-    list.forEach(function (w) { var v = answerValue(w); if (!seen[v]) { seen[v] = 1; n++; } });
-    return n;
   }
 
   function onAnswer(btn, val) {
@@ -1286,9 +1285,21 @@
       session.missed[cur.romaji] = true;
       var pos = Math.min(3, session.queue.length);
       session.queue.splice(pos, 0, cur);
-      el.hintBox.innerHTML = "<b>Answer:</b> " +
-        escapeHtml(cur.kana) + " (" + escapeHtml(cur.romaji) + ") = " + escapeHtml(cur.hebrew) +
-        (cur.hint ? "<br><b>Remember:</b> " + escapeHtml(cur.hint) : "");
+
+      var chosenWord = null;
+      for (var ci = 0; ci < VOCAB.length; ci++) {
+        if (answerValue(VOCAB[ci]) === val) { chosenWord = VOCAB[ci]; break; }
+      }
+
+      var html = "<b>Answer:</b> " +
+        escapeHtml(cur.kana) + " (" + escapeHtml(cur.romaji) + ") = " + escapeHtml(cur.hebrew);
+      if (chosenWord && chosenWord.romaji !== cur.romaji) {
+        html += "<br><b>You picked:</b> " +
+          escapeHtml(chosenWord.kana) + " (" + escapeHtml(chosenWord.romaji) + ") = " + escapeHtml(chosenWord.hebrew);
+      }
+      if (cur.hint) html += "<br><b>Remember:</b> " + escapeHtml(cur.hint);
+
+      el.hintBox.innerHTML = html;
       el.hintBox.classList.remove("hidden");
     }
 
