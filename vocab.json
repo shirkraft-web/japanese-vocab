@@ -121,7 +121,7 @@
   {"topic": "grammer", "kana": "じゃない", "romaji": "janai", "hebrew": "שלילה (שע)", "hint": "__"},
   {"topic": "grammer", "kana": "せん", "romaji": "sen", "hebrew": "שלילה (פועל)", "hint": "סיומת שמתחברת למילה האחרונה במשפט"},
   {"topic": "grammer", "kana": "ね", "romaji": "ne", "hebrew": "סיומת ריכוך", "hint": "__"},
-  {"topic": "grammer", "kana": "よ", "romaji": "yo", "hebrew": "סיומת !", "hint": "__"},
+  {"topic": "grammer", "kana": "よ", "romaji": "yo", "hebrew": "סיומת חיזוק", "hint": "__"},
   {"topic": "grammer", "kana": "か", "romaji": "ka", "hebrew": "האם", "hint": "סיומת שמתחברת למילה האחרונה במשפט"},
   
   {"topic": "nouns", "kana": "ペン", "romaji": "pen", "hebrew": "עט", "hint": "__"},
@@ -145,6 +145,10 @@
   {"topic": "nouns", "kana": "そうじ", "romaji": "souji", "hebrew": "ניקיון", "hint": "__"},
   {"topic": "nouns", "kana": "テニス", "romaji": "tenisu", "hebrew": "טניס", "hint": "__"},
   {"topic": "nouns", "kana": "デート", "romaji": "de-to", "hebrew": "דייט", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "eiga", "hebrew": "סרט", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "hamba-ga", "hebrew": "המבורגר", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "ongaku", "hebrew": "מוזיקה", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "terebi", "hebrew": "טלויזיה", "hint": "__"},
 
   {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
   {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
