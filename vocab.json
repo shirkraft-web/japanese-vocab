@@ -104,22 +104,6 @@
   {"topic": "greetings", "kana": "", "romaji": "hajimemashite", "hebrew": "נעים להכיר", "hint": "__"},
   {"topic": "greetings", "kana": "", "romaji": "yoroshiku onegaishimasu", "hebrew": "ברכה ליצירת קשר/שמירת קשר טוב", "hint": "__"},
   {"topic": "greetings", "kana": "", "romaji": "wo kudasai", "hebrew": "בבקשה", "hint": "please"},
-  
-#needs changes
-  {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
-  {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
-  {"topic": "other", "kana": "ビンテージ", "romaji": "binteji", "hebrew": "וינטג'", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "hai", "hebrew": "כן'", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "iie", "hebrew": "לא", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "watashi", "hebrew": "אני", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "anata", "hebrew": "את.ה (לא באמת בשימוש)", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "boku", "hebrew": "אני (לבנים)", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "nihon go", "hebrew": "יפנית", "hint": "go = שפת ה-"},
-  {"topic": "other", "kana": "", "romaji": "heburai go", "hebrew": "עברית", "hint": "go = שפת ה-"},
-  {"topic": "other", "kana": "", "romaji": "jin", "hebrew": "איש", "hint": "__"},
-  {"topic": "other", "kana": "", "romaji": "nihon jin", "hebrew": "יפני", "hint": "מדינה + jin"},
-  {"topic": "other", "kana": "", "romaji": "isuraeru jin", "hebrew": "ישראלי", "hint": "מדינה + jin"},
-  {"topic": "other", "kana": "", "romaji": "nan", "hebrew": "מה", "hint": "__"},
 
   {"topic": "grammer", "kana": "", "romaji": "kore", "hebrew": "'(פשוט) זה' קרוב לדובר", "hint": "__"},
   {"topic": "grammer", "kana": "", "romaji": "sore", "hebrew": "' (פשוט) זה' קרוב לשומע", "hint": "__"},
@@ -158,5 +142,20 @@
   {"topic": "nouns", "kana": "", "romaji": "shigoto", "hebrew": "עבודה", "hint": "__"},
   {"topic": "nouns", "kana": "", "romaji": "souji", "hebrew": "ניקיון", "hint": "__"},
   {"topic": "nouns", "kana": "", "romaji": "tenisu", "hebrew": "טניס", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "de-to", "hebrew": "דייט", "hint": "__"}
+  {"topic": "nouns", "kana": "", "romaji": "de-to", "hebrew": "דייט", "hint": "__"},
+
+  {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
+  {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
+  {"topic": "other", "kana": "ビンテージ", "romaji": "binteji", "hebrew": "וינטג'", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "hai", "hebrew": "כן'", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "iie", "hebrew": "לא", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "watashi", "hebrew": "אני", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "anata", "hebrew": "את.ה (לא באמת בשימוש)", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "boku", "hebrew": "אני (לבנים)", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "nihon go", "hebrew": "יפנית", "hint": "go = שפת ה-"},
+  {"topic": "other", "kana": "", "romaji": "heburai go", "hebrew": "עברית", "hint": "go = שפת ה-"},
+  {"topic": "other", "kana": "", "romaji": "jin", "hebrew": "איש", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "nihon jin", "hebrew": "יפני", "hint": "מדינה + jin"},
+  {"topic": "other", "kana": "", "romaji": "isuraeru jin", "hebrew": "ישראלי", "hint": "מדינה + jin"},
+  {"topic": "other", "kana": "", "romaji": "nan", "hebrew": "מה", "hint": "__"}
 ]
