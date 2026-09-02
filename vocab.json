@@ -105,7 +105,7 @@
   {"topic": "greetings", "kana": "", "romaji": "yoroshiku onegaishimasu", "hebrew": "ברכה ליצירת קשר/שמירת קשר טוב", "hint": "__"},
   {"topic": "greetings", "kana": "", "romaji": "wo kudasai", "hebrew": "בבקשה", "hint": "please"},
   
-//needs changes
+#needs changes
   {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
   {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
   {"topic": "other", "kana": "ビンテージ", "romaji": "binteji", "hebrew": "וינטג'", "hint": "__"},
@@ -158,7 +158,5 @@
   {"topic": "nouns", "kana": "", "romaji": "shigoto", "hebrew": "עבודה", "hint": "__"},
   {"topic": "nouns", "kana": "", "romaji": "souji", "hebrew": "ניקיון", "hint": "__"},
   {"topic": "nouns", "kana": "", "romaji": "tenisu", "hebrew": "טניס", "hint": "__"},
-  {"topic": "nouns", "kana": "", "romaji": "de-to", "hebrew": "דייט", "hint": "__"},
-
-  
+  {"topic": "nouns", "kana": "", "romaji": "de-to", "hebrew": "דייט", "hint": "__"}
 ]
