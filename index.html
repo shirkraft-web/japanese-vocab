@@ -569,6 +569,37 @@
   }
   .topic-group summary::-webkit-details-marker { display: none; }
   .topic-group summary .count { color: rgba(38, 33, 29, 0.6); }
+  .chev {
+    display: inline-block;
+    width: 1em;
+    margin-right: 2px;
+    color: var(--orange-dk);
+    transition: transform 0.15s ease;
+  }
+  details[open] > summary .chev { transform: rotate(90deg); }
+
+  .grammar-head {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    margin: 18px 0 8px;
+    padding-top: 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .grammar-body { padding: 10px 12px; font-size: 13.5px; line-height: 1.6; }
+  .g-explain { margin: 0 0 8px; }
+  .g-example {
+    background: var(--paper);
+    border: 1px dashed var(--ink);
+    border-radius: 3px;
+    padding: 8px 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .g-example .g-jp { font-weight: 700; }
+  .g-example .g-mean { color: rgba(38, 33, 29, 0.7); }
   .vocab-row {
     display: flex;
     align-items: flex-start;
@@ -736,8 +767,12 @@
   var STORE_KEY = "jpVocabProgress";
   var GAME_KEY = "jpVocabGame";
   var ALL = "__all__";
+  var NUMBERS_TOPIC = "numbers";
+  var NUMBERS_ROUND = 12;
+  var NUMBERS_MAX = 9999;
 
   var VOCAB = [];
+  var GRAMMAR = [];
   var progress = loadProgress();
   var game = loadGame();
   var session = null;
@@ -941,6 +976,108 @@
     setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 950);
   }
 
+  /* ---------- numbers: generate Japanese readings 1..9999 ---------- */
+
+  var NUM_ATOMS = {
+    1: { kana: "いち", romaji: "ichi" },
+    2: { kana: "に", romaji: "ni" },
+    3: { kana: "さん", romaji: "san" },
+    4: { kana: "よん", romaji: "yon" },
+    5: { kana: "ご", romaji: "go" },
+    6: { kana: "ろく", romaji: "roku" },
+    7: { kana: "なな", romaji: "nana" },
+    8: { kana: "はち", romaji: "hachi" },
+    9: { kana: "きゅう", romaji: "kyuu" },
+    10: { kana: "じゅう", romaji: "juu" },
+    100: { kana: "ひゃく", romaji: "hyaku" },
+    1000: { kana: "せん", romaji: "sen" },
+    300: { kana: "さんびゃく", romaji: "sanbyaku" },
+    600: { kana: "ろっぴゃく", romaji: "roppyaku" },
+    800: { kana: "はっぴゃく", romaji: "happyaku" },
+    3000: { kana: "さんぜん", romaji: "sanzen" },
+    8000: { kana: "はっせん", romaji: "hassen" }
+  };
+
+  function loadNumberAtoms() {
+    VOCAB.forEach(function (w) {
+      if (w.topic !== NUMBERS_TOPIC) return;
+      var n = Number(w.hebrew);
+      if (!isNaN(n)) NUM_ATOMS[n] = { kana: w.kana, romaji: w.romaji };
+    });
+  }
+
+  function joinAtoms(a, b) { return { kana: a.kana + b.kana, romaji: a.romaji + b.romaji }; }
+
+  function composeNumber(n) {
+    var th = Math.floor(n / 1000), h = Math.floor((n % 1000) / 100),
+        t = Math.floor((n % 100) / 10), o = n % 10;
+    var groups = [];
+    if (th) groups.push(th === 1 ? NUM_ATOMS[1000] : th === 3 ? NUM_ATOMS[3000] :
+      th === 8 ? NUM_ATOMS[8000] : joinAtoms(NUM_ATOMS[th], NUM_ATOMS[1000]));
+    if (h) groups.push(h === 1 ? NUM_ATOMS[100] : h === 3 ? NUM_ATOMS[300] :
+      h === 6 ? NUM_ATOMS[600] : h === 8 ? NUM_ATOMS[800] : joinAtoms(NUM_ATOMS[h], NUM_ATOMS[100]));
+    if (t) groups.push(t === 1 ? NUM_ATOMS[10] : joinAtoms(NUM_ATOMS[t], NUM_ATOMS[10]));
+    if (o) groups.push(NUM_ATOMS[o]);
+    return {
+      kana: groups.map(function (g) { return g.kana; }).join(""),
+      romaji: groups.map(function (g) { return g.romaji; }).join("-")
+    };
+  }
+
+  var SIMPLE_POOL = (function () {
+    var out = [];
+    for (var i = 1; i <= 10; i++) out.push(i);
+    for (var t = 20; t <= 90; t += 10) out.push(t);
+    for (var h = 100; h <= 900; h += 100) out.push(h);
+    for (var k = 1000; k <= 9000; k += 1000) out.push(k);
+    return out;
+  })();
+  var SIMPLE_SET = {};
+  SIMPLE_POOL.forEach(function (v) { SIMPLE_SET[v] = 1; });
+
+  function nonZeroGroups(n) {
+    var c = 0;
+    if (Math.floor(n / 1000)) c++;
+    if (Math.floor((n % 1000) / 100)) c++;
+    if (Math.floor((n % 100) / 10)) c++;
+    if (n % 10) c++;
+    return c;
+  }
+
+  function genSimple(taken) {
+    for (var tries = 0; tries < 60; tries++) {
+      var v = SIMPLE_POOL[Math.floor(Math.random() * SIMPLE_POOL.length)];
+      if (!taken[v]) return v;
+    }
+    for (var i = 0; i < SIMPLE_POOL.length; i++) if (!taken[SIMPLE_POOL[i]]) return SIMPLE_POOL[i];
+    return 1;
+  }
+
+  function genBlended(taken) {
+    for (var tries = 0; tries < 200; tries++) {
+      var v = 1 + Math.floor(Math.random() * NUMBERS_MAX);
+      if (taken[v] || SIMPLE_SET[v] || nonZeroGroups(v) < 2) continue;
+      return v;
+    }
+    return 234;
+  }
+
+  function genDistractorValue(v, taken) {
+    var digits = String(v).length;
+    for (var tries = 0; tries < 60; tries++) {
+      var lo = Math.pow(10, digits - 1), hi = Math.pow(10, digits) - 1;
+      var c = lo + Math.floor(Math.random() * (hi - lo + 1));
+      if (c !== v && !taken[c] && c >= 1 && c <= NUMBERS_MAX) return c;
+    }
+    for (var n = 1; n <= NUMBERS_MAX; n++) if (n !== v && !taken[n]) return n;
+    return v === 1 ? 2 : 1;
+  }
+
+  function numberItem(v) {
+    var r = composeNumber(v);
+    return { value: v, kana: r.kana, romaji: r.romaji, hebrew: String(v) };
+  }
+
   /* ---------- load + validate ---------- */
 
   fetch("./vocab.json?v=" + Date.now(), { cache: "no-store" })
@@ -965,6 +1102,7 @@
       return;
     }
     VOCAB = data;
+    loadNumberAtoms();
     el.loading.classList.add("hidden");
     el.quizTab.classList.remove("hidden");
     el.mascot.innerHTML = MASCOT_SVG;
@@ -983,6 +1121,30 @@
     buildTopicSelect();
     updateScopeLine();
     renderVocabTab();
+    loadGrammar();
+  }
+
+  function loadGrammar() {
+    fetch("./grammar.json?v=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (data) {
+        if (!Array.isArray(data)) throw new Error("not an array");
+        GRAMMAR = data.filter(function (g) {
+          return g && typeof g.title === "string" && g.title.trim() &&
+                 typeof g.explanation === "string" && g.explanation.trim();
+        }).map(function (g) {
+          return {
+            title: g.title,
+            explanation: g.explanation,
+            example: typeof g.example === "string" ? g.example : "",
+            exampleMeaning: typeof g.exampleMeaning === "string" ? g.exampleMeaning : ""
+          };
+        });
+        renderVocabTab();
+      })
+      .catch(function (err) {
+        console.warn("grammar.json not loaded:", err && err.message || err);
+      });
   }
 
   function validate(data) {
@@ -1087,10 +1249,15 @@
 
   function scopeWords() {
     var v = el.topicSelect.value;
-    return v === ALL ? VOCAB.slice() : VOCAB.filter(function (w) { return w.topic === v; });
+    if (v === ALL) return VOCAB.filter(function (w) { return w.topic !== NUMBERS_TOPIC; });
+    return VOCAB.filter(function (w) { return w.topic === v; });
   }
 
   function updateScopeLine() {
+    if (el.topicSelect.value === NUMBERS_TOPIC) {
+      el.scopeLine.innerHTML = "<b>generated</b> · 1–9999";
+      return;
+    }
     var words = scopeWords();
     var weak = words.filter(function (w) { return isWeak(w.romaji); }).length;
     var html = "<b>" + words.length + "</b> word" + (words.length === 1 ? "" : "s");
@@ -1118,26 +1285,47 @@
     return a;
   }
 
-  function startSession() {
-    var words = scopeWords();
-    if (words.length < 2) {
-      window.alert("Need at least 2 words in this selection to run a quiz.");
-      return;
+  function buildNumbersRound() {
+    var items = [], taken = {};
+    var half = Math.ceil(NUMBERS_ROUND / 2);
+    for (var i = 0; i < NUMBERS_ROUND; i++) {
+      var v = i < half ? genSimple(taken) : genBlended(taken);
+      taken[v] = 1;
+      items.push(numberItem(v));
     }
+    return shuffle(items);
+  }
+
+  function startSession() {
+    var isNumbers = el.topicSelect.value === NUMBERS_TOPIC;
 
     // first user gesture — unlock audio
     var ctx = ensureAudio();
     if (ctx && ctx.state === "suspended") ctx.resume();
 
-    var weak = shuffle(words.filter(function (w) { return isWeak(w.romaji); }));
-    var rest = shuffle(words.filter(function (w) { return !isWeak(w.romaji); }));
+    var pool;
+    if (isNumbers) {
+      pool = buildNumbersRound();
+    } else {
+      var words = scopeWords();
+      if (words.length < 2) {
+        window.alert("Need at least 2 words in this selection to run a quiz.");
+        return;
+      }
+      var weak = shuffle(words.filter(function (w) { return isWeak(w.romaji); }));
+      var rest = shuffle(words.filter(function (w) { return !isWeak(w.romaji); }));
+      pool = weak.concat(rest);
+    }
+
     session = {
       topic: el.topicSelect.value,
-      pool: words,
-      queue: weak.concat(rest),
-      total: words.length,
+      numbers: isNumbers,
+      pool: pool,
+      queue: pool.slice(),
+      total: pool.length,
       firstTry: {},
       missed: {},
+      optionItems: [],
       xpEarned: 0,
       answered: false,
       current: null,
@@ -1210,33 +1398,49 @@
   function renderOptions() {
     var cur = session.current;
     var correctVal = answerValue(cur);
+    var entries;  // [{ val, item }]
 
-    var used = {}; used[correctVal] = 1;
-    var picks = [];
-
-    function drawFrom(list) {
-      var shuffled = shuffle(list.slice());
-      for (var i = 0; i < shuffled.length && picks.length < 3; i++) {
-        var val = answerValue(shuffled[i]);
-        if (!used[val]) { used[val] = 1; picks.push(val); }
+    if (session.numbers) {
+      var taken = {}; taken[cur.value] = 1;
+      var items = [cur];
+      while (items.length < 4) {
+        var dv = genDistractorValue(cur.value, taken);
+        taken[dv] = 1;
+        items.push(numberItem(dv));
       }
+      entries = shuffle(items).map(function (it) {
+        return { val: answerValue(it), item: it };
+      });
+    } else {
+      var used = {}; used[correctVal] = 1;
+      var picked = [];
+      var drawFrom = function (list) {
+        var shuffled = shuffle(list.slice());
+        for (var i = 0; i < shuffled.length && picked.length < 3; i++) {
+          var w = shuffled[i], val = answerValue(w);
+          if (!used[val]) { used[val] = 1; picked.push(w); }
+        }
+      };
+      // 1) same scope as the quiz — the chosen topic, or all words
+      drawFrom(session.pool.filter(function (w) { return w !== cur; }));
+      // 2) only if that topic is too small to fill 4 options, top up from the rest
+      if (picked.length < 3) {
+        drawFrom(VOCAB.filter(function (w) { return w.romaji !== cur.romaji; }));
+      }
+      entries = shuffle([{ val: correctVal, item: cur }].concat(
+        picked.map(function (w) { return { val: answerValue(w), item: w }; })
+      ));
     }
 
-    // 1) same scope as the quiz — the chosen topic, or all words
-    drawFrom(session.pool.filter(function (w) { return w !== cur; }));
-    // 2) only if that topic is too small to fill 4 options, top up from the rest
-    if (picks.length < 3) {
-      drawFrom(VOCAB.filter(function (w) { return w.romaji !== cur.romaji; }));
-    }
+    session.optionItems = entries.map(function (e) { return e.item; });
 
-    var all = shuffle([correctVal].concat(picks));
     el.options.innerHTML = "";
-    all.forEach(function (val) {
+    entries.forEach(function (e) {
       var b = document.createElement("button");
       b.className = "option";
-      b.textContent = val;
+      b.textContent = e.val;
       b.setAttribute("dir", "auto");
-      b.addEventListener("click", function () { onAnswer(b, val); });
+      b.addEventListener("click", function () { onAnswer(b, e.val); });
       el.options.appendChild(b);
     });
   }
@@ -1249,10 +1453,12 @@
     var correctVal = answerValue(cur);
     var right = val === correctVal;
 
-    var st = statFor(cur.romaji);
-    st.seen += 1;
-    if (!right) { st.wrong += 1; st.lastWrong = Date.now(); }
-    saveProgress();
+    if (!session.numbers) {
+      var st = statFor(cur.romaji);
+      st.seen += 1;
+      if (!right) { st.wrong += 1; st.lastWrong = Date.now(); }
+      saveProgress();
+    }
 
     if (!session.firstTry.hasOwnProperty(cur.romaji)) {
       session.firstTry[cur.romaji] = right;
@@ -1287,8 +1493,14 @@
       session.queue.splice(pos, 0, cur);
 
       var chosenWord = null;
-      for (var ci = 0; ci < VOCAB.length; ci++) {
-        if (answerValue(VOCAB[ci]) === val) { chosenWord = VOCAB[ci]; break; }
+      var opts = session.optionItems || [];
+      for (var oi = 0; oi < opts.length; oi++) {
+        if (answerValue(opts[oi]) === val) { chosenWord = opts[oi]; break; }
+      }
+      if (!chosenWord) {
+        for (var ci = 0; ci < VOCAB.length; ci++) {
+          if (answerValue(VOCAB[ci]) === val) { chosenWord = VOCAB[ci]; break; }
+        }
       }
 
       var html = "<b>Answer:</b> " +
@@ -1347,7 +1559,7 @@
       el.missedList.innerHTML = "";
     } else {
       var byRomaji = {};
-      VOCAB.forEach(function (w) { byRomaji[w.romaji] = w; });
+      (session.numbers ? session.pool : VOCAB).forEach(function (w) { byRomaji[w.romaji] = w; });
       var rows = missedRomajis.map(function (k) {
         var w = byRomaji[k];
         if (!w) return "";
@@ -1378,7 +1590,7 @@
     VOCAB.forEach(function (w) { (groups[w.topic] = groups[w.topic] || []).push(w); });
     var topics = Object.keys(groups).sort();
 
-    el.vocabTab.innerHTML = topics.map(function (tp) {
+    var html = topics.map(function (tp) {
       var rows = groups[tp].map(function (w) {
         return '<div class="vocab-row">' +
           '<button class="mini-speak" data-kana="' + escapeHtml(w.kana) + '">🔊</button>' +
@@ -1391,11 +1603,30 @@
           "</div>" +
         "</div>";
       }).join("");
-      return '<details class="topic-group" open><summary>' +
+      return '<details class="topic-group"><summary><span class="chev">&#9656;</span>' +
         escapeHtml(tp) + ' <span class="count">(' + groups[tp].length + ")</span></summary>" +
         rows + "</details>";
     }).join("");
 
+    if (GRAMMAR.length) {
+      html += '<div class="grammar-head">Grammar notes</div>';
+      html += GRAMMAR.map(function (g) {
+        var body = '<p class="g-explain" dir="auto">' +
+          escapeHtml(g.explanation).replace(/\n/g, "<br>") + "</p>";
+        if (g.example) {
+          body += '<div class="g-example">' +
+            '<button class="mini-speak" data-kana="' + escapeHtml(g.example) + '">🔊</button>' +
+            '<span class="g-jp">' + escapeHtml(g.example) + "</span>" +
+            (g.exampleMeaning ? '<span class="g-mean" dir="auto">— ' + escapeHtml(g.exampleMeaning) + "</span>" : "") +
+          "</div>";
+        }
+        return '<details class="topic-group grammar-group"><summary><span class="chev">&#9656;</span>' +
+          escapeHtml(g.title) + "</summary>" +
+          '<div class="grammar-body">' + body + "</div></details>";
+      }).join("");
+    }
+
+    el.vocabTab.innerHTML = html;
     wireMiniSpeak(el.vocabTab);
   }
 

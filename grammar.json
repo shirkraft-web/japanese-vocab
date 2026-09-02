@@ -1,0 +1,32 @@
+[
+  {
+    "title": "は vs が — topic vs subject",
+    "explanation": "は (pronounced 'wa' here) marks the topic: the thing you are talking about, usually already known.\nが marks the grammatical subject and often introduces new or emphasised information, or answers 'who / what?'.",
+    "example": "わたしは がくせいです。ねこが います。",
+    "exampleMeaning": "As for me, I'm a student. There is a cat (new info — が)."
+  },
+  {
+    "title": "を — direct-object particle",
+    "explanation": "を (pronounced 'o') marks the direct object: the thing the verb acts on. It comes right before the verb.",
+    "example": "みずを のみます。",
+    "exampleMeaning": "I drink water."
+  },
+  {
+    "title": "か — question marker",
+    "explanation": "Put か at the end of a sentence to turn it into a yes/no question. No change in word order, and often no question mark is needed.",
+    "example": "がくせいですか。",
+    "exampleMeaning": "Are you a student?"
+  },
+  {
+    "title": "の — linking nouns / possession",
+    "explanation": "の joins two nouns: A の B means 'B of A' or 'A's B'. The owner or describer comes first.",
+    "example": "わたしの ほん。にほんの くるま。",
+    "exampleMeaning": "My book. A Japanese (Japan's) car."
+  },
+  {
+    "title": "〜ます vs plain form — politeness",
+    "explanation": "The 〜ます form (たべます, のみます) is polite and safe with strangers.\nThe plain / dictionary form (たべる, のむ) is casual, used with friends and family and inside longer sentences.",
+    "example": "たべます / たべる",
+    "exampleMeaning": "eat (polite / plain)"
+  }
+]
