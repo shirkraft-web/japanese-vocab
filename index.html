@@ -1062,12 +1062,38 @@
     return 234;
   }
 
+  function toDigits(n) {
+    return [Math.floor(n / 1000) % 10, Math.floor(n / 100) % 10, Math.floor(n / 10) % 10, n % 10];
+  }
+  function fromDigits(d) { return d[0] * 1000 + d[1] * 100 + d[2] * 10 + d[3]; }
+  function leadDigitIndex(d) {
+    for (var i = 0; i < 4; i++) if (d[i]) return i;
+    return 3;
+  }
+
+  // Keeps the leading digit-group identical to v and only perturbs a later
+  // place, so options can't be told apart by their first word/digit alone.
   function genDistractorValue(v, taken) {
-    var digits = String(v).length;
+    var d = toDigits(v), lead = leadDigitIndex(d);
+    var tailPositions = [];
+    for (var i = lead + 1; i < 4; i++) tailPositions.push(i);
+    if (!tailPositions.length) tailPositions.push(lead);
+
     for (var tries = 0; tries < 60; tries++) {
-      var lo = Math.pow(10, digits - 1), hi = Math.pow(10, digits) - 1;
-      var c = lo + Math.floor(Math.random() * (hi - lo + 1));
-      if (c !== v && !taken[c] && c >= 1 && c <= NUMBERS_MAX) return c;
+      var d2 = d.slice();
+      var pos = tailPositions[Math.floor(Math.random() * tailPositions.length)];
+      var nd = Math.floor(Math.random() * 10);
+      if (nd === d2[pos]) nd = (nd + 1) % 10;
+      d2[pos] = nd;
+      var c = fromDigits(d2);
+      if (c !== v && c >= 1 && c <= NUMBERS_MAX && !taken[c]) return c;
+    }
+    // fallback: same digit-count random value, if the positional search stalls
+    var digitCount = String(v).length;
+    for (var t2 = 0; t2 < 60; t2++) {
+      var lo = Math.pow(10, digitCount - 1), hi = Math.pow(10, digitCount) - 1;
+      var c2 = lo + Math.floor(Math.random() * (hi - lo + 1));
+      if (c2 !== v && !taken[c2] && c2 >= 1 && c2 <= NUMBERS_MAX) return c2;
     }
     for (var n = 1; n <= NUMBERS_MAX; n++) if (n !== v && !taken[n]) return n;
     return v === 1 ? 2 : 1;
