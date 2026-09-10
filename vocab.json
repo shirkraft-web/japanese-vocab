@@ -10,14 +10,20 @@
   { "topic": "professions", "kana": "インストラクター", "romaji": "insutorakuta-", "hebrew": "מדריך", "hint": "__" },
   { "topic": "professions", "kana": "マネージャー", "romaji": "mane-ja-", "hebrew": "מנהל", "hint": "__" },
 
-  { "topic": "family", "kana": "はは", "romaji": "haha", "hebrew": "אמא", "hint": "'ha-ha' — your own mother (humble form)" },
+  { "topic": "family", "kana": "", "romaji": "okaasan", "hebrew": "אמא", "hint": "" },
   { "topic": "family", "kana": "ちち", "romaji": "chichi", "hebrew": "אבא", "hint": "'chi-chi' — your own father (humble form)" },
   { "topic": "family", "kana": "あに", "romaji": "ani", "hebrew": "אח גדול", "hint": "'ah-nee' — older brother" },
   { "topic": "family", "kana": "あね", "romaji": "ane", "hebrew": "אחות גדולה", "hint": "'ah-neh' — older sister" },
   { "topic": "family", "kana": "おとうと", "romaji": "otouto", "hebrew": "אח קטן", "hint": "'oh-toh-toh' — younger brother" },
   { "topic": "family", "kana": "いもうと", "romaji": "imouto", "hebrew": "אחות קטנה", "hint": "'ee-moh-toh' — younger sister" },
+  { "topic": "family", "kana": "", "romaji": "tomodachi", "hebrew": "חבר", "hint": "" },
 
   { "topic": "food", "kana": "ごはん", "romaji": "gohan", "hebrew": "אורז / ארוחה", "hint": "'go-han' — rice, and by extension a meal" },
+  { "topic": "food", "kana": "", "romaji": "asagohan", "hebrew": "ארוחת בוקר", "hint": "" },
+  { "topic": "food", "kana": "", "romaji": "hirugohan", "hebrew": "ארוחת צהריים", "hint": "" },
+  { "topic": "food", "kana": "", "romaji": "bangohan", "hebrew": "ארוחת ערב", "hint": "" },
+
+  
   { "topic": "food", "kana": "みず", "romaji": "mizu", "hebrew": "מים", "hint": "'mee-zoo' — water" },
   {"topic": "food", "kana": "ビール", "romaji": "biiru", "hebrew": "בירה", "hint": "__"},
   { "topic": "food", "kana": "おさけ", "romaji": "osake", "hebrew": "סאקה (אלכוהול)", "hint": "__" },
@@ -33,6 +39,9 @@
   {"topic": "food", "kana": "ハンバーガ", "romaji": "hamba-ga", "hebrew": "המבורגר", "hint": "__"},
   { "topic": "food", "kana": "おいしい", "romaji": "oishii", "hebrew": "טעים", "hint": "__" },
   { "topic": "food", "kana": "ベジタリアン", "romaji": "bejitarian", "hebrew": "צמחוני", "hint": "__" },
+  { "topic": "food", "kana": "", "romaji": "ohashi", "hebrew": "צ'ופסטיקס", "hint": "__" },
+  { "topic": "food", "kana": "", "romaji": "fo-ku", "hebrew": "מזלג", "hint": "__" },
+  { "topic": "food", "kana": "", "romaji": "supoon", "hebrew": "כף", "hint": "__" },
   
 
   { "topic": "countries", "kana": "にほん", "romaji": "nihon", "hebrew": "יפן", "hint": "'nee-hon' — Japan" },
@@ -124,6 +133,8 @@
   {"topic": "grammer", "kana": "ね", "romaji": "ne", "hebrew": "סיומת ריכוך", "hint": "__"},
   {"topic": "grammer", "kana": "よ", "romaji": "yo", "hebrew": "סיומת חיזוק", "hint": "__"},
   {"topic": "grammer", "kana": "か", "romaji": "ka", "hebrew": "האם", "hint": "סיומת שמתחברת למילה האחרונה במשפט"},
+  {"topic": "grammer", "kana": "", "romaji": "shoshite", "hebrew": "ו... (חיבור, רק למשפטים)", "hint": "סיומת שמתחברת למילה האחרונה במשפט"},
+  
   
   {"topic": "nouns", "kana": "ペン", "romaji": "pen", "hebrew": "עט", "hint": "__"},
   {"topic": "nouns", "kana": "ノート", "romaji": "no-to", "hebrew": "מחברת", "hint": "__"},
@@ -149,10 +160,26 @@
   {"topic": "nouns", "kana": "えいが", "romaji": "eiga", "hebrew": "סרט", "hint": "__"},
   {"topic": "nouns", "kana": "おんがく", "romaji": "ongaku", "hebrew": "מוזיקה", "hint": "__"},
   {"topic": "nouns", "kana": "テレビ", "romaji": "terebi", "hebrew": "טלויזיה", "hint": "__"},
+  {"topic": "nouns", "kana": "ビンテージ", "romaji": "binteji", "hebrew": "וינטג'", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "kicchin", "hebrew": "מטבח", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "ribingu rumu", "hebrew": "סלון", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "jimu", "hebrew": "חדר כושר", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "hoteru", "hebrew": "מלון", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "ofisu", "hebrew": "משרד", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "resutoran", "hebrew": "מסעדה", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "pabu", "hebrew": "פאב", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "taburetto", "hebrew": "טאבלט", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "konpu-ta", "hebrew": "מחשב", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "kuruma", "hebrew": "רכב", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "umi", "hebrew": "ים", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "uchi", "hebrew": "home", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "ie", "hebrew": "house", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "soko", "hebrew": "שם", "hint": "__"},
+  {"topic": "nouns", "kana": "", "romaji": "koko", "hebrew": "כאן", "hint": "__"},
+
 
   {"topic": "other", "kana": "かた", "romaji": "kata", "hebrew": "כתפיים", "hint": "__"},
   {"topic": "other", "kana": "かった", "romaji": "katta", "hebrew": "ניצחתי", "hint": "__"},
-  {"topic": "other", "kana": "ビンテージ", "romaji": "binteji", "hebrew": "וינטג'", "hint": "__"},
   {"topic": "other", "kana": "はい", "romaji": "hai", "hebrew": "כן'", "hint": "__"},
   {"topic": "other", "kana": "いいえ", "romaji": "iie", "hebrew": "לא", "hint": "__"},
   {"topic": "other", "kana": "ちょっと", "romaji": "chotto", "hebrew": "קצת", "hint": "__"},
@@ -164,5 +191,12 @@
   {"topic": "other", "kana": "じん", "romaji": "jin", "hebrew": "איש", "hint": "__"},
   {"topic": "other", "kana": "にほんじん", "romaji": "nihon jin", "hebrew": "יפני", "hint": "מדינה + jin"},
   {"topic": "other", "kana": "いすらえるじん", "romaji": "isuraeru jin", "hebrew": "ישראלי", "hint": "מדינה + jin"},
-  {"topic": "other", "kana": "なん", "romaji": "nan", "hebrew": "מה", "hint": "__"}
+  {"topic": "other", "kana": "なん", "romaji": "nan", "hebrew": "מה", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "ima", "hebrew": "עכשיו", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "kinou", "hebrew": "אתמול", "hint": "__"},  
+  {"topic": "other", "kana": "", "romaji": "gozen", "hebrew": "am", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "gogo", "hebrew": "pm", "hint": "__"},
+  {"topic": "other", "kana": "", "romaji": "~ji", "hebrew": "o'clock", "hint": "יוצאות דופן בהערות"}
+  
+  
 ]
