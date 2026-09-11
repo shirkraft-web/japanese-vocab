@@ -1,27 +1,27 @@
 [
   {
-    "title": "sentence structure",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "sentence structure — word order",
+    "explanation": "Basic Japanese sentence order: subject(wa) → time(ni) → place(de) → object(wo) → verb(-masu). Not every part is needed in every sentence — Japanese drops whatever is already clear from context.",
+    "example": "わたしは 3じに レストランで ピザを たべます。",
+    "exampleMeaning": "I eat pizza at the restaurant at 3 o'clock. (subject–time–place–object–verb)"
   },
   {
-    "title": "wa",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "は — wa (topic marker)",
+    "explanation": "は marks the sentence's topic — what the sentence is about. Written は but pronounced 'wa' when used as this particle.",
+    "example": "わたしは がくせいです。",
+    "exampleMeaning": "As for me, I'm a student."
   },
   {
-    "title": "ni",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "に — ni (time / direction marker)",
+    "explanation": "に marks a point in time ('at/on') or a destination ('to'). Comes right after the time word or the place being moved toward. Exception: relative time words like ima (now) never take に.",
+    "example": "7じに おきます。がっこうに いきます。",
+    "exampleMeaning": "I wake up at 7. I go to school."
   },
   {
-    "title": "de",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "で — de (place / means marker)",
+    "explanation": "で marks where an action happens ('at/in') or the means/tool used to do it ('by/with').",
+    "example": "こうえんで あそびます。バスで いきます。",
+    "exampleMeaning": "I play at the park. I go by bus."
   },
   {
     "title": "を — wo -  direct-object particle",
@@ -30,22 +30,22 @@
     "exampleMeaning": "I drink water."
   },
   {
-    "title": "RU-verb",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "Ru-verb → ます",
+    "explanation": "For ru-verbs, drop the final -ru and add -masu.",
+    "example": "たべる → たべます。わたしは たべます。",
+    "exampleMeaning": "to eat → I eat. (taberu → tabemasu)"
   },
   {
-    "title": "U-verb",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "U-verb → ます",
+    "explanation": "For u-verbs, change the final u-row sound to the matching i-row sound, then add -masu.",
+    "example": "きく → ききます。ホンダさんは のみます。",
+    "exampleMeaning": "to listen/ask → (I) listen. Mr. Honda drinks. (kiku → kikimasu, nomu → nomimasu)"
   },
   {
-    "title": "irregular verbs",
-    "explanation": "",
-    "example": "",
-    "exampleMeaning": ""
+    "title": "irregular verbs — する / くる",
+    "explanation": "suru (to do) and kuru (to come) don't follow the ru-verb or u-verb pattern: suru → shimasu, kuru → kimasu. Very common since many verbs are noun + suru (benkyou suru = to study).",
+    "example": "にほんじんは べんきょうします。",
+    "exampleMeaning": "The Japanese person studies. (benkyou suru → benkyou shimasu)"
   },
   {
     "title": "か — question marker",
@@ -60,9 +60,71 @@
     "exampleMeaning": "My book. A Japanese (Japan's) car."
   },
   {
-    "title": "〜ます vs plain form — politeness",
-    "explanation": "The 〜ます form (たべます, のみます) is polite and safe with strangers.\nThe plain / dictionary form (たべる, のむ) is casual, used with friends and family and inside longer sentences.",
-    "example": "たべます / たべる",
-    "exampleMeaning": "eat (polite / plain)"
+    "title": "kore / sore / are & kono / sono / ano — 'this / that'",
+    "explanation": "kore, sore, are stand alone as 'this one / that one / that one over there', by distance from speaker and listener. kono, sono, ano cover the same three distances but must be followed directly by a noun — they never stand alone.",
+    "table": {
+      "headers": ["distance", "stands alone", "+ noun"],
+      "rows": [
+        ["close to speaker", "kore (これ)", "kono (この) + noun"],
+        ["close to listener", "sore (それ)", "sono (その) + noun"],
+        ["far from both", "are (あれ)", "ano (あの) + noun"]
+      ]
+    },
+    "example": "これは わたしの ペンです。このノートは 100えんです。",
+    "exampleMeaning": "This is my pen. This notebook is 100 yen."
+  },
+  {
+    "title": "Japanglish — how foreign sounds shift",
+    "explanation": "Japanese phonology forces a few systematic swaps when borrowing foreign words: v→b, r/l→r (no separate l sound), si→shi, zi→ji.",
+    "table": {
+      "headers": ["foreign sound", "becomes", "example"],
+      "rows": [
+        ["v", "b", "vintage → binteji"],
+        ["r / l", "r", "robot → roboto  ·  Israel → Isuraeru"],
+        ["si", "shi", "Sivan → Shiban"],
+        ["zi", "ji", "Ziva → Jiba"]
+      ]
+    }
+  },
+  {
+    "title": "じん (jin) — nationality suffix",
+    "explanation": "Add じん (jin) right after a country name to mean 'a person from that country'.",
+    "table": {
+      "headers": ["country", "+ jin"],
+      "rows": [
+        ["Nihon (Japan)", "Nihonjin"],
+        ["Isuraeru (Israel)", "Isuraerujin"],
+        ["Furansu (France)", "Furansujin"],
+        ["Amerika (America)", "Amerikajin"],
+        ["Roshia (Russia)", "Roshiajin"],
+        ["Kankoku (Korea)", "Kankokujin"],
+        ["Chuugoku (China)", "Chuugokujin"]
+      ]
+    },
+    "example": "にほんじん",
+    "exampleMeaning": "Japanese person (Nihon + jin)"
+  },
+  {
+    "title": "הטיות — です (שמות עצם)",
+    "explanation": "How です (the copula, used after nouns/な-adjectives) conjugates for tense and polarity.",
+    "table": {
+      "headers": ["Present aff.", "Present neg.", "Past aff.", "Past neg."],
+      "rows": [
+        ["です (desu)", "じゃないです (janai desu)", "でした (deshita)", "じゃなかったです (janakatta deshita)"]
+      ]
+    }
+  },
+  {
+    "title": "הטיות — פועל (verb groups)",
+    "explanation": "The 〜ます polite conjugation pattern across the three verb groups (Ru-verb, U-verb, irregular).",
+    "table": {
+      "headers": ["", "Present aff.", "Present neg.", "Past aff.", "Past neg."],
+      "rows": [
+        ["Ru-verb", "たべます (tabemasu)", "たべません (tabemasen)", "たべました (tabemashita)", "たべませんでした (tabemasen deshita)"],
+        ["U-verb", "いきます (ikimasu)", "いきません (ikimasen)", "いきました (ikimashita)", "いきませんでした (ikimasen deshita)"],
+        ["irregular (する)", "します (shimasu)", "しません (shimasen)", "しました (shimashita)", "しませんでした (shimasen deshita)"],
+        ["irregular (くる)", "きます (kimasu)", "きません (kimasen)", "きました (kimashita)", "きませんでした (kimasen deshita)"]
+      ]
+    }
   }
 ]
