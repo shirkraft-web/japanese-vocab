@@ -37,7 +37,7 @@
   },
   {
     "title": "U-verb → ます",
-    "explanation": "For u-verbs, change the final u-row sound to the matching i-row sound, then add -masu.",
+    "explanation": "For u-verbs, change the final u-row sound to the matching i-row sound, then add -masu. Kaeru is an exeption and is a U-verb",
     "example": "きく → ききます。ホンダさんは のみます。",
     "exampleMeaning": "to listen/ask → (I) listen. Mr. Honda drinks. (kiku → kikimasu, nomu → nomimasu)"
   },
