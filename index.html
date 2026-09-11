@@ -7,6 +7,8 @@
 <meta name="color-scheme" content="light">
 <title>Japanese Vocabulary</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f3e7d0'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23e0742a'/%3E%3Ctext x='16' y='21' font-size='14' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%2326211d'%3E%E8%AA%9E%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&family=Reggae+One&display=swap" rel="stylesheet">
@@ -130,6 +132,7 @@
     user-select: none;
   }
   .tab.active { background: var(--orange); box-shadow: var(--hard); }
+  .tab-icon { display: none; }
 
   .hidden { display: none !important; }
 
@@ -459,6 +462,52 @@
   @media (max-width: 420px) {
     .options { grid-template-columns: 1fr; }
     .q-word { font-size: 33px; }
+
+    /* Full-bleed phone shell — the "poster card on a page" framing only
+       makes sense with room around it; on a phone the screen IS the frame. */
+    body { padding: 0; align-items: stretch; }
+    .app {
+      max-width: none;
+      min-height: 100vh;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 18px 16px calc(86px + env(safe-area-inset-bottom));
+    }
+    .app::after, .crop, .doodles { display: none; }
+
+    /* Bottom tab bar, native app style */
+    .tabs {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      margin-bottom: 0;
+      gap: 0;
+      background: var(--paper-2);
+      border-top: 2px solid var(--ink);
+      padding: 4px 8px calc(4px + env(safe-area-inset-bottom));
+    }
+    .tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      min-height: 52px;
+      padding: 6px 4px;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      color: rgba(38, 33, 29, 0.55);
+      font-size: 10px;
+    }
+    .tab.active { background: transparent; box-shadow: none; color: var(--ink); }
+    .tab-icon { display: block; width: 22px; height: 22px; }
+    .tab-label { font-size: 10px; letter-spacing: 0.3px; }
+
+    .mini-speak { width: 44px; height: 44px; }
   }
 
   .hint-box {
@@ -600,6 +649,17 @@
   }
   .g-example .g-jp { font-weight: 700; }
   .g-example .g-mean { color: rgba(38, 33, 29, 0.7); }
+  .g-table-wrap { overflow-x: auto; margin: 8px 0; -webkit-overflow-scrolling: touch; }
+  .g-table { border-collapse: collapse; font-size: 11.5px; width: 100%; table-layout: fixed; }
+  .g-table th, .g-table td {
+    border: 1px solid var(--ink);
+    padding: 4px 5px;
+    text-align: left;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .g-table th { background: var(--orange-lt); font-family: var(--font-display); font-weight: 400; letter-spacing: 0.2px; }
+  .g-table td { background: var(--paper); }
   .vocab-row {
     display: flex;
     align-items: flex-start;
@@ -690,8 +750,14 @@
   </header>
 
   <div class="tabs">
-    <div class="tab active" data-tab="quiz">Quiz</div>
-    <div class="tab" data-tab="vocab">Vocabulary</div>
+    <div class="tab active" data-tab="quiz">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="14" height="17" rx="2" transform="rotate(-8 10.5 13.5)"/><rect x="7" y="2.5" width="14" height="17" rx="2"/></svg>
+      <span class="tab-label">Quiz</span>
+    </div>
+    <div class="tab" data-tab="vocab">
+      <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v18h5.5a2.5 2.5 0 0 0 2.5-2.5z"/></svg>
+      <span class="tab-label">Vocabulary</span>
+    </div>
   </div>
 
   <div id="errorBanner" class="error-banner hidden"></div>
@@ -1106,7 +1172,7 @@
 
   /* ---------- load + validate ---------- */
 
-  fetch("./vocab.json?v=" + Date.now(), { cache: "no-store" })
+  fetch("./vocab.json")
     .then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status + " fetching vocab.json");
       return r.json();
@@ -1150,8 +1216,21 @@
     loadGrammar();
   }
 
+  function validGrammarTable(t) {
+    if (!t || typeof t !== "object") return null;
+    if (!Array.isArray(t.headers) || !t.headers.length) return null;
+    if (!t.headers.every(function (h) { return typeof h === "string"; })) return null;
+    if (!Array.isArray(t.rows) || !t.rows.length) return null;
+    var ok = t.rows.every(function (row) {
+      return Array.isArray(row) && row.length === t.headers.length &&
+        row.every(function (c) { return typeof c === "string"; });
+    });
+    if (!ok) return null;
+    return { headers: t.headers, rows: t.rows };
+  }
+
   function loadGrammar() {
-    fetch("./grammar.json?v=" + Date.now(), { cache: "no-store" })
+    fetch("./grammar.json")
       .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
       .then(function (data) {
         if (!Array.isArray(data)) throw new Error("not an array");
@@ -1163,7 +1242,8 @@
             title: g.title,
             explanation: g.explanation,
             example: typeof g.example === "string" ? g.example : "",
-            exampleMeaning: typeof g.exampleMeaning === "string" ? g.exampleMeaning : ""
+            exampleMeaning: typeof g.exampleMeaning === "string" ? g.exampleMeaning : "",
+            table: validGrammarTable(g.table)
           };
         });
         renderVocabTab();
@@ -1639,6 +1719,15 @@
       html += GRAMMAR.map(function (g) {
         var body = '<p class="g-explain" dir="auto">' +
           escapeHtml(g.explanation).replace(/\n/g, "<br>") + "</p>";
+        if (g.table) {
+          body += '<div class="g-table-wrap"><table class="g-table"><thead><tr>' +
+            g.table.headers.map(function (h) { return "<th>" + escapeHtml(h) + "</th>"; }).join("") +
+            "</tr></thead><tbody>" +
+            g.table.rows.map(function (row) {
+              return "<tr>" + row.map(function (c) { return "<td>" + escapeHtml(c) + "</td>"; }).join("") + "</tr>";
+            }).join("") +
+            "</tbody></table></div>";
+        }
         if (g.example) {
           body += '<div class="g-example">' +
             '<button class="mini-speak" data-kana="' + escapeHtml(g.example) + '">🔊</button>' +
@@ -1647,7 +1736,7 @@
           "</div>";
         }
         return '<details class="topic-group grammar-group"><summary><span class="chev">&#9656;</span>' +
-          escapeHtml(g.title) + "</summary>" +
+          '<span dir="auto">' + escapeHtml(g.title) + "</span></summary>" +
           '<div class="grammar-body">' + body + "</div></details>";
       }).join("");
     }
@@ -1661,6 +1750,12 @@
       b.addEventListener("click", function () { speak(b.getAttribute("data-kana")); });
     });
     refreshSpeakButtons();
+  }
+
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js");
+    });
   }
 
 })();

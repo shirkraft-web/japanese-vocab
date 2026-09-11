@@ -13,6 +13,19 @@ to 0 on any wrong one). Clearing browser data resets all of it.
 
 - `index.html` — the whole app.
 - `vocab.json` — the word list you edit by hand.
+- `grammar.json` — optional. A list of grammar notes shown at the bottom of the
+  Vocabulary tab; each entry is `{ "title", "explanation", "example", "exampleMeaning", "table" }`
+  (all but `title`/`explanation` optional). Delete the file and the section just disappears.
+  `table`, if present, is `{ "headers": ["..."], "rows": [["...", "..."], ...] }` —
+  every row must have the same number of cells as `headers`; renders as a table
+  under the explanation (e.g. a verb-conjugation grid).
+- `manifest.json`, `sw.js`, `icon.svg`, `icon-192.png`, `icon-512.png` — make
+  the site installable and usable offline (see "Install on your phone" below).
+  You shouldn't need to touch these unless you're changing the app icon or
+  the offline-caching behavior.
+
+In the Vocabulary tab each topic (and each grammar note) is collapsed by default —
+tap the header (▸) to expand it.
 
 ## Adding words
 
@@ -84,4 +97,32 @@ Visual theme is a Shōwa-era retro-poster style (cream paper, burnt orange + ink
 grain, hard shadows). Display and Japanese fonts (Anton, DM Sans, Reggae One) load
 from Google Fonts with a system fallback, so it still renders offline — the
 Japanese font subset is large, so first load over a slow link may briefly show the
-fallback face.
+fallback face. On a phone-width screen the poster-card framing (border, corner
+crop marks) drops away and the two tabs move to a bottom nav bar, so the app
+fills the screen like a native one; nothing changes on desktop.
+
+## Install on your phone
+
+The site is a PWA (installable, works with no internet once installed) — needs
+HTTPS, so this only works on the live GitHub Pages URL, not `localhost`.
+
+- **Android (Chrome)**: open the site → ⋮ menu → **Add to Home screen**.
+- **iPhone (Safari)**: open the site → Share button → **Add to Home Screen**.
+
+Either way you get a home-screen icon that opens full-screen with no browser
+chrome, and it keeps working with wifi/data off (flight mode) — the app shell,
+your word list, grammar notes, and text-to-speech (built into the phone) are
+all cached on first visit.
+
+### Publishing an update that reaches installed copies
+
+`vocab.json` and `grammar.json` are fetched fresh every time you have a
+connection (falling back to the last-seen copy offline), so editing them on
+github.com reaches installed copies automatically, same as before.
+
+Changing `index.html` itself (layout, quiz logic, styling) is different: the
+service worker (`sw.js`) caches the app shell aggressively for offline use, so
+an installed copy won't see shell changes until you bump the cache name at the
+top of `sw.js` — change `CACHE_NAME = "jp-vocab-v1"` to `"jp-vocab-v2"` (etc.)
+whenever you push an `index.html`/`sw.js` update. That forces every installed
+copy to re-fetch the shell next time it's opened with a connection.
